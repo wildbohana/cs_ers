@@ -1,0 +1,37 @@
+Device:
+ + polja:
+   - ID
+ + metode:
+   - UpisiMerenje() [na svakih 5 minuta]
+Merenje:
+ + polja:
+   - analogna/digitalna vrednost
+   - vrednostMerenja
+   - idMerenja
+   - timestamp
+
+Server: [samo jedna instanca]
+ + metode:
+   - PrihvatiZahtevZaUpisUBazu()
+   - PrihvatiZahtevOdProksija()
+   - Loguj()
+
+Client:
+ + metode:
+   - DobaviPodatkeId()
+   - DobaviPoslednjiPodatakId()
+   - DobaviPoslednjiPodatakSvi()
+   - DobaviSveAnalogne()
+   - DobaviSveDigitalne()
+
+Proxy: [samo jedna instanca]
+ + polja:
+   - lokalniPodaci
+   - vremePoslednjegDobavljanja
+   - vremePoslednjegPristupa
+ + metode:
+   - PrihvatiZahtevOdKlijenta()
+   - DobaviPodatkeOdServera()
+   - ObrisiStarePodatke()
+
+Dodatno: sva vremena treba da budu konfigurabilna
