@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Common
 {
     public interface IKlijent
     {
-
+        void Start(IProksi kanal);
     }
 }

@@ -1,0 +1,11 @@
+C:\Users\wildbohana\Desktop\Proxy\Client\bin\Debug\Client.exe.config
+C:\Users\wildbohana\Desktop\Proxy\Client\bin\Debug\Client.exe
+C:\Users\wildbohana\Desktop\Proxy\Client\bin\Debug\Client.pdb
+C:\Users\wildbohana\Desktop\Proxy\Client\bin\Debug\Common.dll
+C:\Users\wildbohana\Desktop\Proxy\Client\bin\Debug\Common.pdb
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.exe
+C:\Users\wildbohana\Desktop\Proxy\Client\obj\Debug\Client.pdb

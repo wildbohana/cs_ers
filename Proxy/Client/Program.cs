@@ -19,24 +19,28 @@ namespace Client
         //[ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
-            //Writer w = new Writer();
+            // Otvaranje kanala
+            IProksi kanal;
             try
             {
-                // TODO: dopuni App.config
-                // Otvaranje kanala
-                ChannelFactory<IProxyService> cf = new ChannelFactory<IProxyService>(new NetTcpBinding(), new EndpointAddress("net.tcp://localhost:4002/IProxyService"));
-                IProxyService kanal = cf.CreateChannel();
+                ChannelFactory<IProksi> cf = new ChannelFactory<IProksi>("Proksi");
+                kanal = cf.CreateChannel();
             }
-            catch
+            catch (Exception e)
             {
-                throw new AddressAccessDeniedException("Neuspešna konekcija na server.");
+                Console.WriteLine(e.Message + "\n");
+                Console.WriteLine("Klijent se gasi. Pokušajte ponovo da ga pokrenete malo kasnije.");
+                Console.ReadKey();
+                return;
             }
-                
-            // pocetak slanja w.Start(...)
-            //w.Start(kanal);
 
-            Console.WriteLine("Klijent je završio sa radom. Pritisni bilo koji taster za izlaz...");
-            Console.ReadLine();
+            // Početak rada klijenta
+            Klijent k = new Klijent();
+            k.Start(kanal);
+
+            // Gašenje klijenta
+            Console.WriteLine("Klijent je završio sa radom. Pritisni bilo koji taster za izlaz.");
+            Console.ReadKey();
         }
     }
 }

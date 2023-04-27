@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IKlijent.cs" />
-    <Compile Include="IUredjaj.cs" />
-    <Compile Include="IProksi.cs" />
-    <Compile Include="IProxyService.cs" />
-    <Compile Include="IServer.cs" />
+    <Compile Include="Interfejsi\IKlijent.cs" />
+    <Compile Include="Interfejsi\IUredjaj.cs" />
+    <Compile Include="Interfejsi\IProksi.cs" />
+    <Compile Include="Interfejsi\IServer.cs" />
+    <Compile Include="Klase\Log.cs" />
+    <Compile Include="Klase\Merenje.cs" />
+    <Compile Include="Klase\VrstaMerenja.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
