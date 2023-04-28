@@ -11,19 +11,21 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.ServiceModel;
 using Common;
+using Common.Interfejsi;
 
 namespace Client
 {
     public class Program
     {
-        //[ExcludeFromCodeCoverage]
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             // Otvaranje kanala
+            ChannelFactory<IProksi> cf = new ChannelFactory<IProksi>("Proksi");
             IProksi kanal;
+
             try
             {
-                ChannelFactory<IProksi> cf = new ChannelFactory<IProksi>("Proksi");
                 kanal = cf.CreateChannel();
             }
             catch (Exception e)
@@ -33,10 +35,10 @@ namespace Client
                 Console.ReadKey();
                 return;
             }
-
+            
             // Početak rada klijenta
             Klijent k = new Klijent();
-            k.Start(kanal);
+            k.RadKlijenta(kanal);
 
             // Gašenje klijenta
             Console.WriteLine("Klijent je završio sa radom. Pritisni bilo koji taster za izlaz.");

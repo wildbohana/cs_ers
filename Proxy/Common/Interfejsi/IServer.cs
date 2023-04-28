@@ -1,13 +1,22 @@
-﻿using System;
+﻿using Common.Klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Interfejsi
 {
+    [ServiceContract]
     public interface IServer
     {
+        // TODO izmeniti, ovo su samo placeholderi za sad
+        [OperationContract]
+        bool UpisUBazu(Merenje m, int idUredjaja);
 
+        // Jedno ili više (List)
+        [OperationContract]
+        Merenje CitanjeIzBaze();
     }
 }

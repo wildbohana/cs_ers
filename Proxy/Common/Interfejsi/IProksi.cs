@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Interfejsi
 {
     [ServiceContract]
     public interface IProksi

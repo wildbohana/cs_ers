@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 // Moq, NUnit, NUnit3TestAdapter
 
-namespace Common
+namespace Common.Interfejsi
 {
     public interface IKlijent
     {
-        void Start(IProksi kanal);
+        void RadKlijenta(IProksi kanal);
     }
 }

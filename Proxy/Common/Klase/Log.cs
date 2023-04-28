@@ -79,11 +79,16 @@ namespace Common.Klase
         #endregion
 
         #region BAZA
-        // TODO sredi/dopuni
-        // Da li ja uopšte imam bazu podataka u ovom projektu ahahahah
-        public void CitanjeIzBaze()
+        public void CitanjeIzBaze(DateTime dt)
         {
-            string s = DateTime.Now.ToString() + "\tPristup bazi podataka.";
+            string s = dt.ToString() + "\tCitanje podataka iz baze (proxy).";
+            s += "\n";
+            UpisUFajl(s);
+        }
+
+        public void UpisUBazu(DateTime dt)
+        {
+            string s = dt.ToString() + "\tUpis podataka u bazu (device).";
             s += "\n";
             UpisUFajl(s);
         }

@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Interfejsi;
 using Common.Klase;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,9 @@ namespace Client
 {
     public class Klijent : IKlijent
     {
-        // Ne treba mi ništa više ovde? Ni loger?
+        // Ne treba mi ništa više ovde?
 
-        // Metode
-        public void Start(IProksi kanal)
+        public void RadKlijenta(IProksi kanal)
         {
             while (true)
             {
@@ -73,7 +73,7 @@ namespace Client
 
             try
             {
-                Console.Write("Unesite ID uređaja: >");
+                Console.Write("Unesite ID uređaja: > ");
                 trazeni = int.Parse(Console.ReadLine());
             }
             catch (Exception e)
@@ -113,7 +113,7 @@ namespace Client
 
             try
             {
-                Console.Write("Unesite ID uređaja: >");
+                Console.Write("Unesite ID uređaja: > ");
                 trazeni = int.Parse(Console.ReadLine());
             }
             catch (Exception e)
