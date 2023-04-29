@@ -7,35 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Proksi loguje sve događaje u txt fajl
+// NE ZABORAVI - PROKSI ŠALJE ZAHTEV SERVERU I NJENOJ BAZI; DAKLE PROKSI PIŠE QUERY!!!
+// Lokalna kopija podataka je In-Memory???
 
 namespace Proxy
 {
-    public class Proksi : IProksi
+    public class Proksi
     {
-        public List<Merenje> DobaviPodatkeId(int id)
+        private static int brojInstanci = 0;    // TODO singleton pattern
+        private Log loger;
+        // Dodati polja po potrebi
+
+        public static int BrojInstanci { get => brojInstanci; set => brojInstanci = value; }
+        public Log Loger { get => loger; set => loger = value; }
+
+        public Proksi()
         {
-            throw new NotImplementedException();
+            ++brojInstanci;
+            loger = new Log("../../../proxyLog.txt");
         }
 
-        public Merenje DobaviPoslednjiPodatakId(int id)
+        ~Proksi()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Merenje> DobaviPoslednjiPodatakSvi()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Merenje> DobaviSveAnalogne()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Merenje> DobaviSveDigitalne()
-        {
-            throw new NotImplementedException();
+            loger.UpisPriGasenju(DateTime.Now);
         }
     }
 }

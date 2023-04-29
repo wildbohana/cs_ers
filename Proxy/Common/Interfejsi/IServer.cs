@@ -13,10 +13,10 @@ namespace Common.Interfejsi
     {
         // TODO izmeniti, ovo su samo placeholderi za sad
         [OperationContract]
-        bool UpisUBazu(Merenje m, int idUredjaja);
+        bool Upis(Merenje m, int idUredjaja);
 
         // Jedno ili više (List)
         [OperationContract]
-        Merenje CitanjeIzBaze();
+        Merenje Citanje(string kriterijum);
     }
 }

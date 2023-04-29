@@ -39,10 +39,12 @@ namespace Device
             {
                 // Izmeri i pošalji podatak
                 Merenje m = u.Izmeri();
+                //Console.WriteLine(m);
                 u.PosaljiMerenja(kanal, m);
 
                 // Na svakih 5 minuta
                 Thread.Sleep(TimeSpan.FromMinutes(5));
+                //Thread.Sleep(500);
             }
         }
     }

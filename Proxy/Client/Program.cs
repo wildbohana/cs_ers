@@ -35,7 +35,7 @@ namespace Client
                 Console.ReadKey();
                 return;
             }
-            
+
             // Početak rada klijenta
             Klijent k = new Klijent();
             k.RadKlijenta(kanal);

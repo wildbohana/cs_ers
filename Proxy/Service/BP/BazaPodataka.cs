@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service
+namespace Service.BP
 {
-    internal class Program
+    public class BazaPodataka
     {
-        static void Main(string[] args)
-        {
-
-        }
+        // LiteDB ili SQLite
     }
 }

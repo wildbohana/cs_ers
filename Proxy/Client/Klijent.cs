@@ -14,8 +14,6 @@ namespace Client
 {
     public class Klijent : IKlijent
     {
-        // Ne treba mi ništa više ovde?
-
         public void RadKlijenta(IProksi kanal)
         {
             while (true)

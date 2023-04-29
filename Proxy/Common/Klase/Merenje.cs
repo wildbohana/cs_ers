@@ -30,9 +30,24 @@ namespace Common.Klase
         public Merenje(long idMerenja, VrstaMerenja vrstaMerenja, int vrednost, DateTime vremeMerenja)
         {
             this.idMerenja = idMerenja;
-            this.vrstaMerenja = vrstaMerenja;
-            this.vrednost = vrednost;
             this.vremeMerenja = vremeMerenja;
+            this.vrstaMerenja = vrstaMerenja;
+
+            if (vrstaMerenja == VrstaMerenja.DIGITALNO_MERENJE)
+            {
+                if (!(vrednost == 1 || vrednost == 0))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    this.vrednost = vrednost;
+                }                    
+            }
+            else
+            {
+                this.vrednost = vrednost;
+            }
         }
 
         // Ispis
