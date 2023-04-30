@@ -5,32 +5,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Device
 {
     public class Uredjaj : IUredjaj
     {
-        // Polja
         private int idUredjaja;
-        private static int brojInstanci = 0;    // TODO multiton pattern ?
-
-        // Propertiji
         public int IdUredjaja { get => idUredjaja; set => idUredjaja = value; }
-        public static int BrojInstanci { get => brojInstanci; set => brojInstanci = value; }
 
-        // Konstruktor i destruktor
         public Uredjaj() 
         {
-            idUredjaja = ++BrojInstanci;
+            // ID će biti dovoljno nasumičan da bude jedinstven (pretpostavićemo!)
+            long broj = DateTime.Now.ToFileTime();
+            idUredjaja = int.Parse((broj % 123123123).ToString());
         }
 
-        ~Uredjaj()
-        {
-            --BrojInstanci;
-        }
-
-        // Metode
+        #region METODE
         public Merenje Izmeri()
         {
             // Timestamp i ID merenja - sadašnji trenutak
@@ -64,5 +56,19 @@ namespace Device
                 Console.WriteLine(e.Message);
             }            
         }
+
+        // Izmeri i pošalji podatak na svakih 5 minuta
+        public void RadUredjaja(IServer kanal)
+        {
+            while (true)
+            {
+                Merenje m = Izmeri();
+                PosaljiMerenja(kanal, m);
+
+                Thread.Sleep(TimeSpan.FromMinutes(5));
+                //Thread.Sleep(500);
+            }
+        }
+        #endregion
     }
 }

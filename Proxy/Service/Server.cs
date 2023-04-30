@@ -11,7 +11,7 @@ namespace Service
 {
     public class Server
     {
-        private static int brojInstanci = 0;    // TODO singleton pattern ?
+        private static int brojInstanci = 0;
         private Log loger;
         // Dodati potrebna polja
 
@@ -23,7 +23,7 @@ namespace Service
             if (++BrojInstanci > 1)
                 throw new Exception("Ne može se pokrenuti više od jedne instance Servera!");
 
-            loger = new Log("../../../serverLog.txt");
+            loger = new Log("../../../Logovi/serverLog.txt");
         }
 
         ~Server()

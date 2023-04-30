@@ -11,12 +11,10 @@ namespace Common.Interfejsi
     [ServiceContract]
     public interface IServer
     {
-        // TODO izmeniti, ovo su samo placeholderi za sad
         [OperationContract]
         bool Upis(Merenje m, int idUredjaja);
 
-        // Jedno ili više (List)
         [OperationContract]
-        Merenje Citanje(string kriterijum);
+        List<Merenje> Citanje(string kriterijum, string query);
     }
 }

@@ -9,23 +9,20 @@ namespace Common.Klase
 {
     public class Log
     {
-        // Polja
         private string imeFajla;
-
-        // Propertiji
         public string ImeFajla { get => imeFajla; set => imeFajla = value; }
 
-        // Konstruktor
         public Log(string imeFajla)
         {
             if (imeFajla == null)
                 throw new ArgumentNullException("Morate uneti ime fajla.");
+            else if (imeFajla.Trim() == "")
+                throw new ArgumentException("Naziv fajla mora sadržati karaktere!");
             else
                 this.imeFajla = imeFajla;
         }
 
         #region UREĐAJ
-        // Za uređaj
         public void LogUredjaj(Merenje m, long id)
         {
             string s = $"UREDJAJ: {id}, MERENJE {m}";
@@ -51,6 +48,12 @@ namespace Common.Klase
         #endregion
 
         #region OSTALO
+        public void OcistiLog(string fajl)
+        {
+            if (File.Exists(fajl))
+                File.Delete(fajl);
+        }
+
         public void UpisUFajl(string tekst)
         {
             using (StreamWriter sw = File.AppendText(imeFajla))
@@ -61,11 +64,6 @@ namespace Common.Klase
 
         public void UpisPriGasenju(DateTime dt)
         {
-            if (dt > DateTime.Now)
-            {
-                throw new ArgumentException("Datum je pogrešan");
-            }
-
             string s = "\n" + dt.ToString() + " Gašenje aplikacije...\n\n";
             s += "..............................................................\n";
             UpisUFajl(s);

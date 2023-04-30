@@ -15,6 +15,8 @@ namespace Proxy
     {
         static void Main(string[] args)
         {
+			Console.Title = "Proksi projekat - Proksi server";
+
             using (ServiceHost host = new ServiceHost(typeof(ProksiServis)))
             {
                 host.Open();

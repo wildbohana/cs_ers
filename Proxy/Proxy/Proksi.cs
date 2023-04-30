@@ -14,7 +14,7 @@ namespace Proxy
 {
     public class Proksi
     {
-        private static int brojInstanci = 0;    // TODO singleton pattern
+        private static int brojInstanci = 0;
         private Log loger;
         // Dodati polja po potrebi
 
@@ -24,7 +24,7 @@ namespace Proxy
         public Proksi()
         {
             ++brojInstanci;
-            loger = new Log("../../../proxyLog.txt");
+            loger = new Log("../../../Logovi/proxyLog.txt");
         }
 
         ~Proksi()

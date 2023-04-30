@@ -25,7 +25,7 @@ namespace Client
                     case 3: Opcija3(kanal); break; 
                     case 4: Opcija4(kanal); break; 
                     case 5: Opcija5(kanal); break;
-                    case 6: Opcija6(); return;
+                    case 0: Kraj(); return;
                     default: Console.WriteLine("Nepostojeća komanda..."); break;
                 }
             }
@@ -41,7 +41,7 @@ namespace Client
             Console.WriteLine("3. Dobavi poslednje ažurirano merenje za sve uređaje");
             Console.WriteLine("4. Dobavi sva analogna merenja");
             Console.WriteLine("5. Dobavi sva digitalna merenja");
-            Console.WriteLine("6. Ugasi klijenta");
+            Console.WriteLine("0. Ugasi klijenta");
 
             int i;
             Console.Write("\nIzbor operacije: > ");
@@ -227,9 +227,9 @@ namespace Client
             Console.WriteLine();
         }
 
-        public void Opcija6()
+        public void Kraj()
         {   
-            //Log.UpisPriGasenju(DateTime.Now);
+            //Console.WriteLine("Gašenje klijenta...");
         }
 
         #endregion

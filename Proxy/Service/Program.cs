@@ -11,6 +11,9 @@ namespace Service
     {
         static void Main(string[] args)
         {
+			Console.Title = "Proksi projekat - Server";
+			
+            // ServiceHost mi instancira Server kao deo ServerServisa
             using (ServiceHost host = new ServiceHost(typeof(ServerServis)))
             {
                 host.Open();
@@ -21,7 +24,7 @@ namespace Service
                 Console.WriteLine("Pritisnite bilo koji taster za zaustavljanje servera.");
                 Console.ReadKey();
                 host.Close();
-            }
+            }                       
         }
     }
 }

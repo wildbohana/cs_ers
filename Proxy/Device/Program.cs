@@ -14,6 +14,8 @@ namespace Device
     {
         static void Main(string[] args)
         {
+			Console.Title = "Proksi projekat - Uređaj";
+
             // Otvaranje kanala
             ChannelFactory<IServer> cf = new ChannelFactory<IServer>("Server");
             IServer kanal;
@@ -30,22 +32,15 @@ namespace Device
                 return;
             }
 
-            // Instanciranje uređaja
+            // Instanciranje uređaja i pokretanje njegovog rada
             Uredjaj u = new Uredjaj();
+            Console.WriteLine($"ID uređaja je {u.IdUredjaja}");
 
-            // TODO: Da li jedno merenje šalje, ili šalje više merenja na svakih 5 minuta?
+            u.RadUredjaja(kanal);
 
-            while (true)
-            {
-                // Izmeri i pošalji podatak
-                Merenje m = u.Izmeri();
-                //Console.WriteLine(m);
-                u.PosaljiMerenja(kanal, m);
-
-                // Na svakih 5 minuta
-                Thread.Sleep(TimeSpan.FromMinutes(5));
-                //Thread.Sleep(500);
-            }
+            // TODO [optional feat] Gašenje uređaja
+            //Console.WriteLine("Uređaj je završio sa radom. Pritisni bilo koji taster za izlaz.");
+            //Console.ReadKey();
         }
     }
 }

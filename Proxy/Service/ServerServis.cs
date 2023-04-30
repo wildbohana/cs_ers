@@ -10,9 +10,8 @@ namespace Service
 {
     public class ServerServis : IServer
     {
-        static readonly Server s = new Server();
-
-        // Device šalje merenje serveru, koji to merenje upisuje u bazu podataka
+        static Server s = new Server();        
+        
         public bool Upis(Merenje m, int idUredjaja)
         {
             s.Loger.LogServer(DateTime.Now, $"Uređaj {idUredjaja} je poslao merenje. Upis u bazu podataka je započet.");
@@ -23,10 +22,7 @@ namespace Service
             return false;
         }
 
-        // Proksi traži da se učitaju podaci iz baze
-        // Izmeni, ovo je samo za sad
-        // Verovatno će se morati dodati Query kao argument
-        public Merenje Citanje(string kriterijum)
+        public List<Merenje> Citanje(string kriterijum, string query)
         {
             s.Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: {kriterijum}. Čitanje iz baze podataka je započeto.");
 
