@@ -1,14 +1,52 @@
-30.04.2023. 20:41:38	Uređaj 35256837 je poslao merenje. Upis u bazu podataka je započet.
-
-30.04.2023. 20:42:25 Gašenje aplikacije...
-
+03.05.2023. 19:59:57	Uređaj 120078202 je poslao merenje 968994041. Upis u bazu podataka je započet.
+03.05.2023. 19:59:58	Podatak 968994041 je uspešno upisan u bazu podataka.
+03.05.2023. 20:00:02 Gašenje aplikacije...
 ..............................................................
-
-30.04.2023. 20:47:41 Gašenje aplikacije...
-
-..............................................................
-30.04.2023. 20:52:12	Uređaj 99219661 je poslao merenje. Upis u bazu podataka je započet.
-
-30.04.2023. 20:52:21 Gašenje aplikacije...
-
+03.05.2023. 20:03:17	Uređaj 13907966 je poslao merenje 961649224. Upis u bazu podataka je započet.
+03.05.2023. 20:03:17	Podatak 961649224 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:17	Uređaj 13907966 je poslao merenje 979874513. Upis u bazu podataka je započet.
+03.05.2023. 20:03:17	Podatak 979874513 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:18	Uređaj 13907966 je poslao merenje 985072954. Upis u bazu podataka je započet.
+03.05.2023. 20:03:18	Podatak 985072954 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:19	Uređaj 13907966 je poslao merenje 990213750. Upis u bazu podataka je započet.
+03.05.2023. 20:03:19	Podatak 990213750 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:19	Uređaj 13907966 je poslao merenje 995561813. Upis u bazu podataka je započet.
+03.05.2023. 20:03:19	Podatak 995561813 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:20	Uređaj 13907966 je poslao merenje 840873. Upis u bazu podataka je započet.
+03.05.2023. 20:03:20	Podatak 840873 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:20	Uređaj 13907966 je poslao merenje 6039308. Upis u bazu podataka je započet.
+03.05.2023. 20:03:20	Podatak 6039308 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:21	Uređaj 13907966 je poslao merenje 11168668. Upis u bazu podataka je započet.
+03.05.2023. 20:03:21	Podatak 11168668 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:21	Uređaj 13907966 je poslao merenje 16422950. Upis u bazu podataka je započet.
+03.05.2023. 20:03:21	Podatak 16422950 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:22	Uređaj 13907966 je poslao merenje 21687341. Upis u bazu podataka je započet.
+03.05.2023. 20:03:22	Podatak 21687341 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:22	Uređaj 13907966 je poslao merenje 26919805. Upis u bazu podataka je započet.
+03.05.2023. 20:03:22	Podatak 26919805 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:23	Uređaj 13907966 je poslao merenje 32166860. Upis u bazu podataka je započet.
+03.05.2023. 20:03:23	Podatak 32166860 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:23	Uređaj 13907966 je poslao merenje 37276125. Upis u bazu podataka je započet.
+03.05.2023. 20:03:23	Podatak 37276125 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:24	Uređaj 13907966 je poslao merenje 42502185. Upis u bazu podataka je započet.
+03.05.2023. 20:03:24	Podatak 42502185 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:24	Uređaj 13907966 je poslao merenje 47782986. Upis u bazu podataka je započet.
+03.05.2023. 20:03:24	Podatak 47782986 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:25	Uređaj 13907966 je poslao merenje 52962806. Upis u bazu podataka je započet.
+03.05.2023. 20:03:25	Podatak 52962806 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:25	Uređaj 13907966 je poslao merenje 58132140. Upis u bazu podataka je započet.
+03.05.2023. 20:03:25	Podatak 58132140 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:26	Uređaj 13907966 je poslao merenje 63392845. Upis u bazu podataka je započet.
+03.05.2023. 20:03:26	Podatak 63392845 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:26	Uređaj 13907966 je poslao merenje 68605690. Upis u bazu podataka je započet.
+03.05.2023. 20:03:26	Podatak 68605690 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:27	Uređaj 13907966 je poslao merenje 73892305. Upis u bazu podataka je započet.
+03.05.2023. 20:03:27	Podatak 73892305 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:27	Uređaj 13907966 je poslao merenje 79099536. Upis u bazu podataka je započet.
+03.05.2023. 20:03:27	Podatak 79099536 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:28	Uređaj 13907966 je poslao merenje 84378515. Upis u bazu podataka je započet.
+03.05.2023. 20:03:28	Podatak 84378515 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:28	Uređaj 13907966 je poslao merenje 89563759. Upis u bazu podataka je započet.
+03.05.2023. 20:03:28	Podatak 89563759 je uspešno upisan u bazu podataka.
+03.05.2023. 20:03:31 Gašenje aplikacije...
 ..............................................................

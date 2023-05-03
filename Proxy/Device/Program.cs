@@ -14,8 +14,6 @@ namespace Device
     {
         static void Main(string[] args)
         {
-			Console.Title = "Proksi projekat - Uređaj";
-
             // Otvaranje kanala
             ChannelFactory<IServer> cf = new ChannelFactory<IServer>("Server");
             IServer kanal;

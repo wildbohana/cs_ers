@@ -12,7 +12,7 @@ namespace Common.Interfejsi
     public interface IServer
     {
         [OperationContract]
-        bool Upis(Merenje m, int idUredjaja);
+        bool Upis(Merenje m);
 
         [OperationContract]
         List<Merenje> Citanje(string kriterijum, string query);

@@ -19,15 +19,18 @@ namespace Device
         {
             // ID će biti dovoljno nasumičan da bude jedinstven (pretpostavićemo!)
             long broj = DateTime.Now.ToFileTime();
-            idUredjaja = int.Parse((broj % 123123123).ToString());
+            idUredjaja = int.Parse((broj % 123456789).ToString());
         }
 
         #region METODE
         public Merenje Izmeri()
         {
-            // Timestamp i ID merenja - sadašnji trenutak
+            // Timestamp - sadašnji trenutak
             DateTime vreme = DateTime.Now;
-            long id = vreme.ToFileTime();
+
+            // ID merenja - zasnovan na DateTime.Now, "skraćen" na int podatak
+            long temp = vreme.ToFileTime() % 1000000000;
+            int id = int.Parse(temp.ToString());
 
             // Vrsta i vrednost - na osnovu slučajnosti
             Random rand = new Random();
@@ -39,14 +42,14 @@ namespace Device
             else
                 vrednost = (rand.NextDouble() > 0.5) ? 1 : 0;
 
-            return new Merenje(id, vrsta, vrednost, vreme);
+            return new Merenje(id, vrsta, vrednost, vreme, idUredjaja);
         }
 
         public void PosaljiMerenja(IServer kanal, Merenje m)
         {
             try
             {
-                if (kanal.Upis(m, idUredjaja))
+                if (kanal.Upis(m))
                     Console.WriteLine(DateTime.Now.ToString() + "\tUspešno slanje merenja u bazu podataka.");
                 else
                     Console.WriteLine(DateTime.Now.ToString() + "\tNeuspešno slanje merenja u bazu podataka.");

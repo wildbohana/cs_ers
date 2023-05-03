@@ -64,7 +64,7 @@ namespace Common.Klase
 
         public void UpisPriGasenju(DateTime dt)
         {
-            string s = "\n" + dt.ToString() + " Gašenje aplikacije...\n\n";
+            string s = dt.ToString() + " Gašenje aplikacije...\n";
             s += "..............................................................\n";
             UpisUFajl(s);
         }

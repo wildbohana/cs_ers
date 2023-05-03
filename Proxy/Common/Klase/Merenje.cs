@@ -11,14 +11,20 @@ namespace Common.Klase
     public class Merenje
     {
         // Polja
-        private long idMerenja;
+        private int idUredjaja;
+        private int idMerenja;
         private VrstaMerenja vrstaMerenja;
         private int vrednost;
         private DateTime vremeMerenja;
 
+        // Sa obzirom da nigde nemam opciju za menjanje vremena, onda se vremeMerenja nikada neće ni menjati
+        // Da sam imala opciju izmene već postojećih merenja, ovo bih obavezno ažurirala automatski svaki put
+
         // Propertiji
         [DataMember]
-        public long IdMerenja { get => idMerenja; set => idMerenja = value; }
+        public int IdUredjaja { get => idUredjaja; set => idUredjaja = value; }
+        [DataMember]
+        public int IdMerenja { get => idMerenja; set => idMerenja = value; }
         [DataMember]
         public VrstaMerenja VrstaMerenja { get => vrstaMerenja; set => vrstaMerenja = value; }
         [DataMember]
@@ -27,8 +33,9 @@ namespace Common.Klase
         public DateTime VremeMerenja { get => vremeMerenja; set => vremeMerenja = value; }
 
         // Konstruktor
-        public Merenje(long idMerenja, VrstaMerenja vrstaMerenja, int vrednost, DateTime vremeMerenja)
+        public Merenje(int idMerenja, VrstaMerenja vrstaMerenja, int vrednost, DateTime vremeMerenja, int idUredjaja = -1)
         {
+            this.idUredjaja = idUredjaja;
             this.idMerenja = idMerenja;
             this.vremeMerenja = vremeMerenja;
             this.vrstaMerenja = vrstaMerenja;
@@ -36,13 +43,9 @@ namespace Common.Klase
             if (vrstaMerenja == VrstaMerenja.DIGITALNO_MERENJE)
             {
                 if (!(vrednost == 1 || vrednost == 0))
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+                    throw new ArgumentOutOfRangeException("Digitalno merenje prima vrednosti 0 ili 1!");
                 else
-                {
-                    this.vrednost = vrednost;
-                }                    
+                    this.vrednost = vrednost;                    
             }
             else
             {
@@ -53,7 +56,7 @@ namespace Common.Klase
         // Ispis
         public override string ToString()
         {
-            return $"ID: {idMerenja}, Izmerena vrednost: {vrednost} ({vrstaMerenja}), vreme: {vremeMerenja}";
+            return $"ID: {idMerenja}, Izmerena vrednost: {vrednost} ({vrstaMerenja}), vreme: {vremeMerenja}, uređaj: {idUredjaja}";
         }
     }
 }
