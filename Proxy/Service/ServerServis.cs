@@ -25,7 +25,7 @@ namespace Service
                 int dodatih = veza.Execute("insert into Podaci (idMerenja, idUredjaja, vrstaMerenja, vrednost, vreme) " +
                     "values (@IdMerenja, @IdUredjaja, @VrstaMerenja, @Vrednost, @VremeMerenja)", m);
 
-                // Log o uspešnosi, vraćanje bool vrendosti uređaju
+                // Log o uspešnosi, vraćanje bool vrednosti uređaju
                 if (dodatih > 0)
                 {
                     s.Loger.LogServer(DateTime.Now, $"Podatak {m.IdMerenja} je uspešno upisan u bazu podataka.");
@@ -39,17 +39,19 @@ namespace Service
             }
         }
 
-        // TODO
         public List<Merenje> Citanje(string kriterijum, string query)
         {
-            s.Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: {kriterijum}. Čitanje iz baze podataka je započeto.");
-
-            // Čitanje iz baze
-            // Log o uspešnosti, return tražene vrednosti
+            s.Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: <{kriterijum}>. Čitanje iz baze podataka je započeto.");
 
             using (IDbConnection veza = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = veza.Query<Merenje>("select * from Podaci", new DynamicParameters());
+                IEnumerable<Merenje> output = veza.Query<Merenje>(query, new DynamicParameters());
+
+                if (output != null)
+                    s.Loger.LogServer(DateTime.Now, "Podaci su uspešno dobavljeni iz baze podataka.");
+                else
+                    s.Loger.LogServer(DateTime.Now, "Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.");
+
                 return output.ToList();
             }
         }

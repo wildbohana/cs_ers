@@ -22,6 +22,19 @@ namespace Device
             idUredjaja = int.Parse((broj % 123456789).ToString());
         }
 
+        // Izmeri i pošalji podatak na svakih 5 minuta
+        public void RadUredjaja(IServer kanal)
+        {
+            while (true)
+            {
+                Merenje m = Izmeri();
+                PosaljiMerenja(kanal, m);
+
+                Thread.Sleep(TimeSpan.FromMinutes(5));
+                //Thread.Sleep(500);
+            }
+        }
+
         #region METODE
         public Merenje Izmeri()
         {
@@ -58,19 +71,6 @@ namespace Device
             {
                 Console.WriteLine(e.Message);
             }            
-        }
-
-        // Izmeri i pošalji podatak na svakih 5 minuta
-        public void RadUredjaja(IServer kanal)
-        {
-            while (true)
-            {
-                Merenje m = Izmeri();
-                PosaljiMerenja(kanal, m);
-
-                Thread.Sleep(TimeSpan.FromMinutes(5));
-                //Thread.Sleep(500);
-            }
         }
         #endregion
     }

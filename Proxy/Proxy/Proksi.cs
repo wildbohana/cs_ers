@@ -21,9 +21,12 @@ namespace Proxy
         public static int BrojInstanci { get => brojInstanci; set => brojInstanci = value; }
         public Log Loger { get => loger; set => loger = value; }
 
+        // TODO redo this class
         public Proksi()
         {
-            ++brojInstanci;
+            if (++brojInstanci > 1)
+                throw new Exception();
+
             loger = new Log("../../../Logovi/proxyLog.txt");
         }
 

@@ -82,7 +82,7 @@ namespace Client
 
             try
             {
-                merenja = kanal.DobaviPodatkeId(trazeni);               
+                merenja = kanal.DobaviPodatkeId(trazeni);
             }
             catch (NullReferenceException e)
             {
