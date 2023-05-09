@@ -45,14 +45,27 @@ namespace Service
 
             using (IDbConnection veza = new SQLiteConnection(LoadConnectionString()))
             {
-                IEnumerable<Merenje> output = veza.Query<Merenje>(query, new DynamicParameters());
+                IEnumerable<Merenje> output = null;
 
-                if (output != null)
+                try
+                {
+                    output = veza.Query<Merenje>(query, new DynamicParameters());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                if (output.Count() > 0)
+                {
                     s.Loger.LogServer(DateTime.Now, "Podaci su uspešno dobavljeni iz baze podataka.");
+                    return output.ToList();
+                }
                 else
+                {
                     s.Loger.LogServer(DateTime.Now, "Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.");
-
-                return output.ToList();
+                    return null;
+                }
             }
         }
 

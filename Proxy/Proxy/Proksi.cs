@@ -7,31 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// NE ZABORAVI - PROKSI ŠALJE ZAHTEV SERVERU I NJENOJ BAZI; DAKLE PROKSI PIŠE QUERY!!!
-// Lokalna kopija podataka je In-Memory???
-
 namespace Proxy
 {
     public class Proksi
     {
         private static int brojInstanci = 0;
         private Log loger;
-        // Dodati polja po potrebi
 
         public static int BrojInstanci { get => brojInstanci; set => brojInstanci = value; }
         public Log Loger { get => loger; set => loger = value; }
 
-        // TODO redo this class
         public Proksi()
         {
             if (++brojInstanci > 1)
-                throw new Exception();
+                throw new Exception("Ne može se pokrenuti više od jedne instance Proksija!");
 
             loger = new Log("../../../Logovi/proxyLog.txt");
         }
 
         ~Proksi()
         {
+            --brojInstanci;
             loger.UpisPriGasenju(DateTime.Now);
         }
     }

@@ -32,7 +32,7 @@ namespace Common.Klase
         [DataMember]
         public DateTime VremeMerenja { get => vremeMerenja; set => vremeMerenja = value; }
 
-        // Konstruktor
+        // Konstruktor -  za Device
         public Merenje(int idMerenja, VrstaMerenja vrstaMerenja, int vrednost, DateTime vremeMerenja, int idUredjaja = -1)
         {
             this.idUredjaja = idUredjaja;
@@ -51,6 +51,16 @@ namespace Common.Klase
             {
                 this.vrednost = vrednost;
             }
+        }
+
+        // Konstruktor -  za BazuPodataka
+        public Merenje(Int64 idMerenja, Int64 idUredjaja , Int64 vrstaMerenja, Int64 vrednost, DateTime vreme)
+        {
+            this.idUredjaja = int.Parse(idUredjaja.ToString());
+            this.idMerenja = int.Parse(idMerenja.ToString());
+            this.vremeMerenja = vreme;
+            this.vrstaMerenja = vrstaMerenja == 0 ? VrstaMerenja.ANALOGNO_MERENJE : VrstaMerenja.DIGITALNO_MERENJE;
+            this.vrednost = int.Parse(vrednost.ToString());
         }
 
         // Ispis

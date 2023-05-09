@@ -13,7 +13,6 @@ namespace Service
     {
         private static int brojInstanci = 0;
         private Log loger;
-        // Dodati potrebna polja
 
         public static int BrojInstanci { get => brojInstanci; set => brojInstanci = value; }
         public Log Loger { get => loger; set => loger = value; }
