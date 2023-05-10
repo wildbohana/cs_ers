@@ -21,7 +21,7 @@ namespace Proxy
         // idMerenja, (Merenje, VremePoslednjeIzmene)
         static Dictionary<int, Tuple<Merenje, DateTime>> lokalnaKopija = new Dictionary<int, Tuple<Merenje, DateTime>>();
 
-        // Timestampovi za sve kriterujume pretrage
+        // Timestampovi za sve kriterijume pretrage
         DateTime poslednjeAzuriranjeLokalnoIdSvi = DateTime.MinValue;
         DateTime poslednjeAzuriranjeLokalnoIdPoslednji = DateTime.MinValue;
         DateTime poslednjeAzuriranjeLokalnoSviPoslednji = DateTime.MinValue;
@@ -64,18 +64,21 @@ namespace Proxy
                 }
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                foreach (Merenje m in rezultat)
-                    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                if (rezultat != null)
+                    foreach (Merenje m in rezultat)
+                        lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
             // Dobavi podatke iz lokalne kopije
             else
             {
+                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+
                 foreach (Tuple<Merenje, DateTime> m in lokalnaKopija.Values)
                     if (m.Item1.IdUredjaja == id)
                         rezultat.Add(m.Item1);
 
-                foreach (Merenje m in rezultat)
-                    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                //foreach (Merenje m in rezultat)
+                //    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
 
             return rezultat;
@@ -96,14 +99,17 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                foreach (Merenje m in rezultat)
-                    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                if (rezultat != null)
+                    foreach (Merenje m in rezultat)
+                        lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
 
                 return rezultat[0];
             }
             // Dobavi podatke iz lokalne kopije
             else
             {
+                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+
                 DateTime poslednjeVreme = DateTime.MinValue;
                 Merenje rezultat = null;
 
@@ -116,7 +122,7 @@ namespace Proxy
                     }
                 }
 
-                lokalnaKopija[rezultat.IdMerenja] = new Tuple<Merenje, DateTime>(rezultat, DateTime.Now);
+                //lokalnaKopija[rezultat.IdMerenja] = new Tuple<Merenje, DateTime>(rezultat, DateTime.Now);
                 return rezultat;
             }
         }
@@ -136,12 +142,15 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                foreach (Merenje m in rezultat)
-                   lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                if (rezultat != null)
+                    foreach (Merenje m in rezultat)
+                       lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
             // Dobavi podatke iz lokalne kopije
             else
             {
+                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+
                 DateTime poslednjeVreme = DateTime.MinValue;
                 rezultat = null;
 
@@ -169,7 +178,7 @@ namespace Proxy
                     }                        
 
                     rezultat.Add(mtemp);
-                    lokalnaKopija[i] = new Tuple<Merenje, DateTime>(lokalnaKopija[i].Item1, DateTime.Now);
+                    //lokalnaKopija[i] = new Tuple<Merenje, DateTime>(lokalnaKopija[i].Item1, DateTime.Now);
                 }
             }
 
@@ -192,18 +201,21 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                foreach (Merenje m in rezultat)
-                    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                if (rezultat != null)
+                    foreach (Merenje m in rezultat)
+                        lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
             // Dobavi podatke iz lokalne kopije
             else
             {
+                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+
                 foreach (Tuple<Merenje, DateTime> m in lokalnaKopija.Values)
                 {
                     if (m.Item1.VrstaMerenja == VrstaMerenja.ANALOGNO_MERENJE)
                     {
                         rezultat.Add(m.Item1);
-                        lokalnaKopija[m.Item1.IdMerenja] = new Tuple<Merenje, DateTime>(m.Item1, DateTime.Now);
+                        //lokalnaKopija[m.Item1.IdMerenja] = new Tuple<Merenje, DateTime>(m.Item1, DateTime.Now);
                     }
                 }
             }
@@ -227,18 +239,21 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                foreach (Merenje m in rezultat)
-                    lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
+                if (rezultat != null)
+                    foreach (Merenje m in rezultat)
+                        lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
             // Dobavi podatke iz lokalne kopije
             else
             {
+                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+
                 foreach (Tuple<Merenje, DateTime> m in lokalnaKopija.Values)
                 {
                     if (m.Item1.VrstaMerenja == VrstaMerenja.DIGITALNO_MERENJE)
                     {
                         rezultat.Add(m.Item1);
-                        lokalnaKopija[m.Item1.IdMerenja] = new Tuple<Merenje, DateTime>(m.Item1, DateTime.Now);
+                        //lokalnaKopija[m.Item1.IdMerenja] = new Tuple<Merenje, DateTime>(m.Item1, DateTime.Now);
                     }
                 }
             }

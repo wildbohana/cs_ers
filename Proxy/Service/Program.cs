@@ -11,6 +11,8 @@ namespace Service
     {
         static void Main(string[] args)
         {
+            Console.Title = "PROKSI - Server";
+
             // ServiceHost mi instancira Server kao deo ServerServisa
             using (ServiceHost host = new ServiceHost(typeof(ServerServis)))
             {

@@ -95,7 +95,7 @@ namespace Client
             }
 
             Console.WriteLine($"Merenja za uređaj sa ID {trazeni}:");
-            if (merenja.Count > 0)
+            if (merenja != null)
                 foreach (Merenje m in merenja)
                     Console.WriteLine("\t" + m.ToString());
             else
@@ -163,7 +163,7 @@ namespace Client
             }
 
             Console.WriteLine("Merenja za sve uređaje:");
-            if (merenja.Count > 0)
+            if (merenja != null)
                 foreach (Merenje m in merenja)
                     Console.WriteLine("\t" + m.ToString());
             else
@@ -191,7 +191,7 @@ namespace Client
             }
 
             Console.WriteLine("Analogna merenja za sve uređaje:");
-            if (merenja.Count > 0)
+            if (merenja != null)
                 foreach (Merenje m in merenja)
                     Console.WriteLine(m.ToString());
             else
@@ -219,7 +219,7 @@ namespace Client
             }
 
             Console.WriteLine("Analogna merenja za sve uređaje:");
-            if (merenja.Count > 0)
+            if (merenja != null)
                 foreach (Merenje m in merenja)
                     Console.WriteLine(m.ToString());
             else

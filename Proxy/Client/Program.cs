@@ -20,7 +20,7 @@ namespace Client
         [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
-            Console.Title = "Proxy projekat - Klijent";
+            Console.Title = "PROKSI - Klijent";
 
             // Otvaranje kanala
             ChannelFactory<IProksi> cf = new ChannelFactory<IProksi>("Proksi");
