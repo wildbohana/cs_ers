@@ -1,82 +1,168 @@
-10.05.2023. 1:26:37	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:26:38	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:26:38	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:26:38	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:26:47	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:26:47	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:27:06	Gašenje aplikacije...
-..............................................................
-10.05.2023. 1:39:33	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:39:33	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:39:33	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:39:33	Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.
-10.05.2023. 1:40:27	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:40:27	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:40:27	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:40:27	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:40:35	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:40:35	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:40:35	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:40:35	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:40:40	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:40:40	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:44	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:44	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:44	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:44	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:45	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:45	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:47	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:47	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:47	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:47	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:47	Proksi je zatražio podatke po krijerijumu: <Svi digitalni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:47	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:51	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:51	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:43:51	Proksi je zatražio podatke po krijerijumu: <Poslednji uneti podatak za sve uređaje>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:43:51	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:13	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:13	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:13	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:13	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:21	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:21	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:21	Proksi je zatražio podatke po krijerijumu: <Poslednji uneti podatak za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:21	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:48	Uređaj 48123675 je poslao merenje 884679942. Upis u bazu podataka je započet.
-10.05.2023. 1:44:48	Podatak 884679942 je uspešno upisan u bazu podataka.
-10.05.2023. 1:44:58	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:58	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:44:58	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:44:58	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:45:05	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:45:05	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:45:05	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:45:05	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:45:16	Gašenje aplikacije...
-..............................................................
-10.05.2023. 1:49:16	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:49:16	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:49:16	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:49:16	Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.
-10.05.2023. 1:51:18	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:18	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:51:18	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:18	Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.
-10.05.2023. 1:51:24	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:24	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:51:24	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:24	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:51:32	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:32	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:51:46	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:51:46	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:52:17	Uređaj 97453537 je poslao merenje 378439044. Upis u bazu podataka je započet.
-10.05.2023. 1:52:18	Podatak 378439044 je uspešno upisan u bazu podataka.
-10.05.2023. 1:52:27	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:52:27	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:52:27	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
-10.05.2023. 1:52:27	Podaci su uspešno dobavljeni iz baze podataka.
-10.05.2023. 1:52:53	Gašenje aplikacije...
+11.05.2023. 12:57:57	Uređaj 26896010 je poslao merenje 764799096. Upis u bazu podataka je započet.
+11.05.2023. 12:57:57	Podatak 764799096 je uspešno upisan u bazu podataka.
+11.05.2023. 12:57:58	Uređaj 26896010 je poslao merenje 780933473. Upis u bazu podataka je započet.
+11.05.2023. 12:57:58	Podatak 780933473 je uspešno upisan u bazu podataka.
+11.05.2023. 12:57:58	Uređaj 26896010 je poslao merenje 786221816. Upis u bazu podataka je započet.
+11.05.2023. 12:57:58	Podatak 786221816 je uspešno upisan u bazu podataka.
+11.05.2023. 12:57:59	Uređaj 26896010 je poslao merenje 791459058. Upis u bazu podataka je započet.
+11.05.2023. 12:57:59	Podatak 791459058 je uspešno upisan u bazu podataka.
+11.05.2023. 12:57:59	Uređaj 26896010 je poslao merenje 796742162. Upis u bazu podataka je započet.
+11.05.2023. 12:57:59	Podatak 796742162 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:00	Uređaj 26896010 je poslao merenje 801984715. Upis u bazu podataka je započet.
+11.05.2023. 12:58:00	Podatak 801984715 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:00	Uređaj 26896010 je poslao merenje 807208429. Upis u bazu podataka je započet.
+11.05.2023. 12:58:00	Podatak 807208429 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:01	Uređaj 26896010 je poslao merenje 812322550. Upis u bazu podataka je započet.
+11.05.2023. 12:58:01	Podatak 812322550 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:01	Uređaj 26896010 je poslao merenje 817541801. Upis u bazu podataka je započet.
+11.05.2023. 12:58:01	Podatak 817541801 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:02	Uređaj 26896010 je poslao merenje 822642917. Upis u bazu podataka je započet.
+11.05.2023. 12:58:02	Podatak 822642917 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:02	Uređaj 26896010 je poslao merenje 827873520. Upis u bazu podataka je započet.
+11.05.2023. 12:58:02	Podatak 827873520 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:03	Uređaj 26896010 je poslao merenje 833142811. Upis u bazu podataka je započet.
+11.05.2023. 12:58:03	Podatak 833142811 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:03	Uređaj 26896010 je poslao merenje 838358846. Upis u bazu podataka je započet.
+11.05.2023. 12:58:03	Podatak 838358846 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:04	Uređaj 26896010 je poslao merenje 843633442. Upis u bazu podataka je započet.
+11.05.2023. 12:58:04	Podatak 843633442 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:04	Uređaj 26896010 je poslao merenje 848851884. Upis u bazu podataka je započet.
+11.05.2023. 12:58:04	Podatak 848851884 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:05	Uređaj 26896010 je poslao merenje 853975015. Upis u bazu podataka je započet.
+11.05.2023. 12:58:05	Podatak 853975015 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:05	Uređaj 26896010 je poslao merenje 859282267. Upis u bazu podataka je započet.
+11.05.2023. 12:58:05	Podatak 859282267 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:06	Uređaj 26896010 je poslao merenje 864455738. Upis u bazu podataka je započet.
+11.05.2023. 12:58:06	Podatak 864455738 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:06	Uređaj 26896010 je poslao merenje 869661289. Upis u bazu podataka je započet.
+11.05.2023. 12:58:06	Podatak 869661289 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:07	Uređaj 26896010 je poslao merenje 874942213. Upis u bazu podataka je započet.
+11.05.2023. 12:58:07	Podatak 874942213 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:08	Uređaj 26896010 je poslao merenje 880200196. Upis u bazu podataka je započet.
+11.05.2023. 12:58:08	Podatak 880200196 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:08	Uređaj 26896010 je poslao merenje 889432073. Upis u bazu podataka je započet.
+11.05.2023. 12:58:08	Podatak 889432073 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:09	Uređaj 26896010 je poslao merenje 894568450. Upis u bazu podataka je započet.
+11.05.2023. 12:58:09	Podatak 894568450 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:09	Uređaj 26896010 je poslao merenje 899784910. Upis u bazu podataka je započet.
+11.05.2023. 12:58:09	Podatak 899784910 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:10	Uređaj 26896010 je poslao merenje 905061953. Upis u bazu podataka je započet.
+11.05.2023. 12:58:10	Podatak 905061953 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:11	Uređaj 26896010 je poslao merenje 910345476. Upis u bazu podataka je započet.
+11.05.2023. 12:58:11	Podatak 910345476 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:11	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:11	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:11	Uređaj 26896010 je poslao merenje 915542066. Upis u bazu podataka je započet.
+11.05.2023. 12:58:11	Podatak 915542066 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:12	Uređaj 26896010 je poslao merenje 920678583. Upis u bazu podataka je započet.
+11.05.2023. 12:58:12	Podatak 920678583 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:12	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:12	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:12	Proksi je zatražio podatke po krijerijumu: <Svi analogni signali>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:12	Uređaj 26896010 je poslao merenje 925888440. Upis u bazu podataka je započet.
+11.05.2023. 12:58:12	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:12	Podatak 925888440 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:13	Uređaj 26896010 je poslao merenje 931019318. Upis u bazu podataka je započet.
+11.05.2023. 12:58:13	Podatak 931019318 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:13	Uređaj 26896010 je poslao merenje 936288503. Upis u bazu podataka je započet.
+11.05.2023. 12:58:13	Podatak 936288503 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:14	Uređaj 26896010 je poslao merenje 941508276. Upis u bazu podataka je započet.
+11.05.2023. 12:58:14	Podatak 941508276 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:14	Uređaj 26896010 je poslao merenje 946649308. Upis u bazu podataka je započet.
+11.05.2023. 12:58:14	Podatak 946649308 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:15	Uređaj 26896010 je poslao merenje 951817644. Upis u bazu podataka je započet.
+11.05.2023. 12:58:15	Podatak 951817644 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:15	Uređaj 26896010 je poslao merenje 956978798. Upis u bazu podataka je započet.
+11.05.2023. 12:58:15	Podatak 956978798 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:16	Uređaj 26896010 je poslao merenje 962238194. Upis u bazu podataka je započet.
+11.05.2023. 12:58:16	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:16	Podatak 962238194 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:16	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:16	Proksi je zatražio podatke po krijerijumu: <Svi podaci za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:16	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:16	Uređaj 26896010 je poslao merenje 967455293. Upis u bazu podataka je započet.
+11.05.2023. 12:58:16	Podatak 967455293 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:17	Uređaj 26896010 je poslao merenje 972595947. Upis u bazu podataka je započet.
+11.05.2023. 12:58:17	Podatak 972595947 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:17	Uređaj 26896010 je poslao merenje 977801970. Upis u bazu podataka je započet.
+11.05.2023. 12:58:17	Podatak 977801970 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:18	Uređaj 26896010 je poslao merenje 983088290. Upis u bazu podataka je započet.
+11.05.2023. 12:58:18	Podatak 983088290 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:18	Uređaj 26896010 je poslao merenje 988272056. Upis u bazu podataka je započet.
+11.05.2023. 12:58:18	Podatak 988272056 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:19	Uređaj 26896010 je poslao merenje 993596642. Upis u bazu podataka je započet.
+11.05.2023. 12:58:19	Podatak 993596642 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:19	Uređaj 26896010 je poslao merenje 998847000. Upis u bazu podataka je započet.
+11.05.2023. 12:58:19	Podatak 998847000 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:20	Uređaj 26896010 je poslao merenje 4070489. Upis u bazu podataka je započet.
+11.05.2023. 12:58:20	Podatak 4070489 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:20	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:20	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:20	Proksi je zatražio podatke po krijerijumu: <Poslednji uneti podatak za traženi ID uređaja>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:20	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:20	Uređaj 26896010 je poslao merenje 9206754. Upis u bazu podataka je započet.
+11.05.2023. 12:58:20	Podatak 9206754 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:21	Uređaj 26896010 je poslao merenje 14410518. Upis u bazu podataka je započet.
+11.05.2023. 12:58:21	Podatak 14410518 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:21	Uređaj 26896010 je poslao merenje 19563836. Upis u bazu podataka je započet.
+11.05.2023. 12:58:21	Podatak 19563836 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:22	Uređaj 26896010 je poslao merenje 24810099. Upis u bazu podataka je započet.
+11.05.2023. 12:58:22	Podatak 24810099 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:23	Uređaj 26896010 je poslao merenje 30204592. Upis u bazu podataka je započet.
+11.05.2023. 12:58:23	Podatak 30204592 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:23	Uređaj 26896010 je poslao merenje 35471244. Upis u bazu podataka je započet.
+11.05.2023. 12:58:23	Podatak 35471244 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:24	Uređaj 26896010 je poslao merenje 40680027. Upis u bazu podataka je započet.
+11.05.2023. 12:58:24	Podatak 40680027 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:24	Uređaj 26896010 je poslao merenje 45808464. Upis u bazu podataka je započet.
+11.05.2023. 12:58:24	Podatak 45808464 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:25	Uređaj 26896010 je poslao merenje 51002526. Upis u bazu podataka je započet.
+11.05.2023. 12:58:25	Podatak 51002526 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:25	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:25	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:25	Proksi je zatražio podatke po krijerijumu: <Svi digitalni signali>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:25	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:25	Uređaj 26896010 je poslao merenje 56316947. Upis u bazu podataka je započet.
+11.05.2023. 12:58:25	Podatak 56316947 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:26	Uređaj 26896010 je poslao merenje 61589232. Upis u bazu podataka je započet.
+11.05.2023. 12:58:26	Podatak 61589232 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:26	Uređaj 26896010 je poslao merenje 66812065. Upis u bazu podataka je započet.
+11.05.2023. 12:58:26	Podatak 66812065 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:27	Uređaj 26896010 je poslao merenje 71935478. Upis u bazu podataka je započet.
+11.05.2023. 12:58:27	Podatak 71935478 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:27	Uređaj 26896010 je poslao merenje 77219587. Upis u bazu podataka je započet.
+11.05.2023. 12:58:27	Podatak 77219587 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:28	Uređaj 26896010 je poslao merenje 82428881. Upis u bazu podataka je započet.
+11.05.2023. 12:58:28	Podatak 82428881 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:28	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:28	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:28	Proksi je zatražio podatke po krijerijumu: <Svi digitalni signali>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:28	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:28	Uređaj 26896010 je poslao merenje 87603807. Upis u bazu podataka je započet.
+11.05.2023. 12:58:28	Podatak 87603807 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:29	Uređaj 26896010 je poslao merenje 92931950. Upis u bazu podataka je započet.
+11.05.2023. 12:58:29	Podatak 92931950 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:29	Uređaj 26896010 je poslao merenje 98047344. Upis u bazu podataka je započet.
+11.05.2023. 12:58:29	Podatak 98047344 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:30	Uređaj 26896010 je poslao merenje 103259282. Upis u bazu podataka je započet.
+11.05.2023. 12:58:30	Podatak 103259282 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:30	Uređaj 26896010 je poslao merenje 108537716. Upis u bazu podataka je započet.
+11.05.2023. 12:58:30	Podatak 108537716 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:31	Uređaj 26896010 je poslao merenje 113751994. Upis u bazu podataka je započet.
+11.05.2023. 12:58:31	Podatak 113751994 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:31	Uređaj 26896010 je poslao merenje 119045642. Upis u bazu podataka je započet.
+11.05.2023. 12:58:31	Podatak 119045642 je uspešno upisan u bazu podataka.
+11.05.2023. 12:58:35	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:35	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:35	Proksi je zatražio podatke po krijerijumu: <Poslednji uneti podatak za sve uređaje>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:35	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:37	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:37	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:39	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:39	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:41	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:41	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:42	Proksi je zatražio podatke po krijerijumu: <Vreme poslednjeg ažuriranja baze podataka>. Čitanje iz baze podataka je započeto.
+11.05.2023. 12:58:42	Podaci su uspešno dobavljeni iz baze podataka.
+11.05.2023. 12:58:49	Gašenje aplikacije...
 ..............................................................

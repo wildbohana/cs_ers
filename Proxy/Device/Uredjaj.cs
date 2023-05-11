@@ -36,8 +36,8 @@ namespace Device
                 Merenje m = Izmeri();
                 PosaljiMerenja(kanal, m);
 
-                Thread.Sleep(TimeSpan.FromMinutes(vremeIzmedjuSlanja));
-                //Thread.Sleep(500);
+                //Thread.Sleep(TimeSpan.FromMinutes(vremeIzmedjuSlanja));
+                Thread.Sleep(500);
             }
         }
 
