@@ -1,13 +1,6 @@
-11.05.2023. 12:58:11	Dobavljanje podataka sa servera
-11.05.2023. 12:58:12	Dobavljanje podataka sa servera
-11.05.2023. 12:58:16	Dobavljanje podataka sa servera
-11.05.2023. 12:58:20	Dobavljanje podataka sa servera
-11.05.2023. 12:58:25	Dobavljanje podataka sa servera
-11.05.2023. 12:58:28	Dobavljanje podataka sa servera
-11.05.2023. 12:58:35	Dobavljanje podataka sa servera
-11.05.2023. 12:58:37	Dobavljanje podataka iz lokalne kopije.
-11.05.2023. 12:58:39	Dobavljanje podataka iz lokalne kopije.
-11.05.2023. 12:58:41	Dobavljanje podataka iz lokalne kopije.
-11.05.2023. 12:58:42	Dobavljanje podataka iz lokalne kopije.
-11.05.2023. 12:58:48	Gašenje aplikacije...
+12.05.2023. 16:31:04	Dobavljanje podataka sa servera
+12.05.2023. 16:31:13	Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.
+12.05.2023. 16:31:13	Iz lokalne kopije je obrisano 0 zastarelih merenja.
+12.05.2023. 16:31:23	Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.
+12.05.2023. 16:31:37	Gašenje aplikacije...
 ..............................................................

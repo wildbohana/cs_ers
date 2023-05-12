@@ -15,17 +15,12 @@ namespace Device
     {
         private int idUredjaja;
         public int IdUredjaja { get => idUredjaja; set => idUredjaja = value; }
-        private int vremeIzmedjuSlanja;
 
-        public Uredjaj() 
+        public Uredjaj()
         {
             // ID će biti dovoljno nasumičan da bude jedinstven (pretpostavićemo!)
             Int64 broj = DateTime.Now.ToFileTime();
             idUredjaja = int.Parse((broj % 123456789).ToString());
-
-            // Učitavanje vremena (u minutama) iz konfiguracije
-            string temp = ConfigurationManager.AppSettings["vremeSlanje"];
-            vremeIzmedjuSlanja = int.Parse(temp);
         }
 
         // Izmeri i pošalji podatak na svakih 5 minuta
@@ -36,12 +31,22 @@ namespace Device
                 Merenje m = Izmeri();
                 PosaljiMerenja(kanal, m);
 
-                //Thread.Sleep(TimeSpan.FromMinutes(vremeIzmedjuSlanja));
-                Thread.Sleep(500);
+                Thread.Sleep(CitanjeVremenaIzKonfiguracijeMerenje());
+                //Thread.Sleep(500);
             }
         }
 
-        // Metode
+        private static TimeSpan CitanjeVremenaIzKonfiguracijeMerenje()
+        {
+            int sati = int.Parse(ConfigurationManager.AppSettings["slanjeSati"]);
+            int minute = int.Parse(ConfigurationManager.AppSettings["slanjeMinute"]);
+            int sekunde = int.Parse(ConfigurationManager.AppSettings["slanjeSekunde"]);
+
+            TimeSpan vreme = TimeSpan.FromHours(sati) + TimeSpan.FromMinutes(minute) + TimeSpan.FromSeconds(sekunde);
+            return vreme;
+        }
+
+        // Metode za merenje i slanje podataka
         public Merenje Izmeri()
         {
             // Timestamp - sadašnji trenutak

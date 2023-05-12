@@ -26,6 +26,7 @@ namespace Proxy
                 Console.WriteLine("Adresa proksija: " + host.BaseAddresses.FirstOrDefault());
 
                 ProksiServis.kanal = KonekcijaServer();
+                Task.Factory.StartNew(() => ProksiServis.ProveraStarihVremena());
 
                 Console.WriteLine("Pritisnite bilo koji taster za zaustavljanje proksija.");
                 Console.ReadKey();

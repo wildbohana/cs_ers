@@ -1,6 +1,0 @@
-Prilikom klijentskog zahteva proxy prvo proverava da li tražana podatke ima lokalno.
-Ukoliko ima, šalje serveru zahtev u kom traži informaciju o tome kada su za dati kriterijum poslednji put sačuvani novi podaci.
-Na osnovu datog odgovora od servera, proxy zaključuje da li je potrebno da podatke ponovo povlači sa servera ili su njegove lokalne kopije up to date.
-
-Proxy na svakih 5 minuta proverava poslednji pristup lokalnim kopijama podataka.
-Ukoliko je poslednji pristup bio pre više od 24h, lokalnu kopiju briše.

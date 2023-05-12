@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DeviceTest
 {
-    public class Class1
+    public class DeviceTest
     {
+
     }
 }

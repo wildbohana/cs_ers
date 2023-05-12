@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProxyTest
 {
-    public class Class1
+    public class ProxyTest
     {
+
     }
 }

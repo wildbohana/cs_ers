@@ -2,13 +2,11 @@
 using Common.Klase;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-
-// TODO: na svakih 5 minuta obriši podatke starije od 24h
-// TODO: učitaj vremena iz konfiguracije (već imaš vrednosti u app.config)
 
 namespace Proxy
 {
@@ -103,11 +101,66 @@ namespace Proxy
         }
         #endregion
 
-        /*
-        Prilikom klijentskog zahteva proxy prvo proverava da li tražana podatke ima lokalno.
-        Ukoliko ima, šalje serveru zahtev u kom traži informaciju o tome kada su za dati kriterijum poslednji put sačuvani novi podaci.
-        Na osnovu datog odgovora od servera, proxy zaključuje da li je potrebno da podatke ponovo povlači sa servera ili su njegove lokalne kopije up to date.
-        */
+        #region BRISANJE STARIH MERENJA
+        public static void ProveraStarihVremena()
+        {
+            while (true)
+            {
+                Task.Delay(CitanjeVremenaIzKonfiguracijeProvera()).Wait();
+                p.Loger.LogProksi(DateTime.Now, "Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.");
+                ObrisiStaraMerenja();
+            }
+        }
+
+        // TODO fix
+        private static void ObrisiStaraMerenja()
+        {
+            int cnt = 0;
+            
+            if (lokalnaKopija.Count > 0)
+            {
+                foreach (Tuple<Merenje, DateTime> t in lokalnaKopija.Values)
+                {
+                    if (DateTime.Now - t.Item2 > CitanjeVremenaIzKonfiguracijeBrisanje())
+                    {
+                        // Zašto pucaš ovde?????
+                        
+                        //try
+                        //{
+                        //    lokalnaKopija.Remove(t.Item1.IdMerenja);
+                        //}
+                        //catch (Exception e)
+                        //{
+                        //    p.Loger.LogProksi(DateTime.Now, e.Message);
+                        //}
+
+                        cnt++;
+                    }
+                }
+            }
+            p.Loger.LogProksi(DateTime.Now, $"Iz lokalne kopije je obrisano {cnt} zastarelih merenja.");
+        }
+
+        private static TimeSpan CitanjeVremenaIzKonfiguracijeProvera()
+        {
+            int sati = int.Parse(ConfigurationManager.AppSettings["proveraSati"]);
+            int minute = int.Parse(ConfigurationManager.AppSettings["proveraMinute"]);
+            int sekunde = int.Parse(ConfigurationManager.AppSettings["proveraSekunde"]);
+
+            TimeSpan vreme = TimeSpan.FromHours(sati) + TimeSpan.FromMinutes(minute) + TimeSpan.FromSeconds(sekunde);
+            return vreme;
+        }
+
+        private static TimeSpan CitanjeVremenaIzKonfiguracijeBrisanje()
+        {
+            int sati = int.Parse(ConfigurationManager.AppSettings["brisanjeSati"]);
+            int minute = int.Parse(ConfigurationManager.AppSettings["brisanjeMinute"]);
+            int sekunde = int.Parse(ConfigurationManager.AppSettings["brisanjeSekunde"]);
+
+            TimeSpan vreme = TimeSpan.FromHours(sati) + TimeSpan.FromMinutes(minute) + TimeSpan.FromSeconds(sekunde);
+            return vreme;
+        }
+        #endregion
 
         public List<Merenje> DobaviPodatkeId(int id)
         {
@@ -147,7 +200,7 @@ namespace Proxy
                         rezultat.Add(m.Item1);
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
@@ -168,7 +221,7 @@ namespace Proxy
                 }
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
@@ -178,7 +231,7 @@ namespace Proxy
 
         public Merenje DobaviPoslednjiPodatakId(int id)
         {
-            //Merenje rezultat = null;
+            Merenje rezultat = null;
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
@@ -210,7 +263,6 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 DateTime poslednjeVreme = DateTime.MinValue;
-                Merenje rezultat = null;
 
                 foreach (Tuple<Merenje, DateTime> m in lokalnaKopija.Values)
                 {
@@ -222,27 +274,27 @@ namespace Proxy
                 }
 
                 // Ažuriraj poslednje vreme pristupa lokalnoj kopiji
-                if (rezultat != null) 
-                    lokalnaKopija[rezultat.IdMerenja] = new Tuple<Merenje, DateTime>(rezultat, DateTime.Now);
-
-                return rezultat;
+                if (rezultat != null) lokalnaKopija[rezultat.IdMerenja] = new Tuple<Merenje, DateTime>(rezultat, DateTime.Now);
             }
             else
             {
                 // Dobavi merenja iz baze
                 string query = "select * from Podaci where vreme=(select max(vreme) from Podaci where idUredjaja=" + id.ToString() + ")";
 
-                List<Merenje> rezultat = new List<Merenje>();
-                rezultat = kanal.Citanje("Poslednji uneti podatak za traženi ID uređaja", query);
+                List<Merenje> rezultatOdServera = new List<Merenje>();
+                rezultatOdServera = kanal.Citanje("Poslednji uneti podatak za traženi ID uređaja", query);
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
                 if (rezultat != null)
-                    foreach (Merenje m in rezultat)
+                    foreach (Merenje m in rezultatOdServera)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
 
-                return rezultat[0];
+                // Dodeli vrednost rezultatu
+                if (rezultatOdServera != null) rezultat = rezultatOdServera[0];
             }
+
+            return rezultat;
         }
 
         public List<Merenje> DobaviPoslednjiPodatakSvi()
@@ -304,7 +356,7 @@ namespace Proxy
                 }
 
                 // Ažuriranje vremena poslednjeg pristupa lokalnim podacima
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(lokalnaKopija[m.IdMerenja].Item1, DateTime.Now);
             }
@@ -317,7 +369,7 @@ namespace Proxy
                 p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
@@ -361,7 +413,7 @@ namespace Proxy
                     if (m.Item1.VrstaMerenja == VrstaMerenja.ANALOGNO_MERENJE)    
                         rezultat.Add(m.Item1);
                 
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
@@ -418,7 +470,7 @@ namespace Proxy
                     if (m.Item1.VrstaMerenja == VrstaMerenja.DIGITALNO_MERENJE)
                         rezultat.Add(m.Item1);
 
-                if (rezultat.Count > 0)
+                if (rezultat != null)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new Tuple<Merenje, DateTime>(m, DateTime.Now);
             }
@@ -437,6 +489,6 @@ namespace Proxy
             }
 
             return rezultat;
-        }
+        }        
     }
 }
