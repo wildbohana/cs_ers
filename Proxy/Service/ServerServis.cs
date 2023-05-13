@@ -20,7 +20,7 @@ namespace Service
         {
             s.Loger.LogServer(DateTime.Now, $"Uređaj {m.IdUredjaja} je poslao merenje {m.IdMerenja}. Upis u bazu podataka je započet.");
 
-            using (IDbConnection veza = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection veza = new SQLiteConnection(UcitajStringZaBazu()))
             {
                 int dodatih = veza.Execute("insert into Podaci (idMerenja, idUredjaja, vrstaMerenja, vrednost, vreme) " +
                     "values (@IdMerenja, @IdUredjaja, @VrstaMerenja, @Vrednost, @VremeMerenja)", m);
@@ -43,7 +43,7 @@ namespace Service
         {
             s.Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: <{kriterijum}>. Čitanje iz baze podataka je započeto.");
 
-            using (IDbConnection veza = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection veza = new SQLiteConnection(UcitajStringZaBazu()))
             {
                 IEnumerable<Merenje> output = null;
 
@@ -70,7 +70,7 @@ namespace Service
         }
 
         // Za SQLite
-        private static string LoadConnectionString(string id = "Default")
+        private static string UcitajStringZaBazu(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }

@@ -1,6 +1,0 @@
-12.05.2023. 16:31:04	Dobavljanje podataka sa servera
-12.05.2023. 16:31:13	Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.
-12.05.2023. 16:31:13	Iz lokalne kopije je obrisano 0 zastarelih merenja.
-12.05.2023. 16:31:23	Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.
-12.05.2023. 16:31:37	Gašenje aplikacije...
-..............................................................

@@ -11,15 +11,6 @@ namespace Common.Interfejsi
     [ServiceContract]
     public interface IProksi
     {
-        // TODO izmeni, dopuni...
-
-        //[OperationContract]
-        //void PrihvatiZahtevOdKlijenta();
-        //[OperationContract]
-        //void DobaviPodatkeOdServera();
-        //[OperationContract]
-        //void ObrisiStarePodatke();
-
         [OperationContract]
         List<Merenje> DobaviPodatkeId(int id);
         [OperationContract]

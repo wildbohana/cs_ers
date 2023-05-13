@@ -30,12 +30,11 @@ namespace Device
             {
                 Merenje m = Izmeri();
                 PosaljiMerenja(kanal, m);
-
                 Thread.Sleep(CitanjeVremenaIzKonfiguracijeMerenje());
-                //Thread.Sleep(500);
             }
         }
 
+        #region METODE
         private static TimeSpan CitanjeVremenaIzKonfiguracijeMerenje()
         {
             int sati = int.Parse(ConfigurationManager.AppSettings["slanjeSati"]);
@@ -45,8 +44,7 @@ namespace Device
             TimeSpan vreme = TimeSpan.FromHours(sati) + TimeSpan.FromMinutes(minute) + TimeSpan.FromSeconds(sekunde);
             return vreme;
         }
-
-        // Metode za merenje i slanje podataka
+        
         public Merenje Izmeri()
         {
             // Timestamp - sadašnji trenutak
@@ -83,5 +81,6 @@ namespace Device
                 Console.WriteLine(e.Message);
             }            
         }
+        #endregion
     }
 }

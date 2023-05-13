@@ -111,28 +111,31 @@ namespace Proxy
                 ObrisiStaraMerenja();
             }
         }
-
-        // TODO fix
+        
         private static void ObrisiStaraMerenja()
         {
             int cnt = 0;
-            
+            Dictionary<int, Tuple<Merenje, DateTime>> temp = lokalnaKopija;
+
+            List<int> lista = new List<int>();
+            foreach (Tuple<Merenje, DateTime> t in lokalnaKopija.Values)
+                if (!lista.Contains(t.Item1.IdMerenja))
+                    lista.Add(t.Item1.IdMerenja);
+
             if (lokalnaKopija.Count > 0)
             {
-                foreach (Tuple<Merenje, DateTime> t in lokalnaKopija.Values)
+                foreach (int i in lista)
                 {
-                    if (DateTime.Now - t.Item2 > CitanjeVremenaIzKonfiguracijeBrisanje())
+                    if (DateTime.Now - lokalnaKopija[i].Item2 > CitanjeVremenaIzKonfiguracijeBrisanje())
                     {
-                        // Zašto pucaš ovde?????
-                        
-                        //try
-                        //{
-                        //    lokalnaKopija.Remove(t.Item1.IdMerenja);
-                        //}
-                        //catch (Exception e)
-                        //{
-                        //    p.Loger.LogProksi(DateTime.Now, e.Message);
-                        //}
+                        try
+                        {
+                            lokalnaKopija.Remove(i);
+                        }
+                        catch (Exception e)
+                        {
+                            p.Loger.LogProksi(DateTime.Now, e.Message);
+                        }
 
                         cnt++;
                     }

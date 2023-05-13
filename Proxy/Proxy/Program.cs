@@ -7,7 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-// Proxy Host: localhost://8002/Proksi
+// Proxy Host:  localhost://8002/Proksi
 // Server Host: localhost://8001/Server
 
 namespace Proxy

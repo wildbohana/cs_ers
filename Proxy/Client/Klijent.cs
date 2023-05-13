@@ -32,7 +32,6 @@ namespace Client
         }
 
         #region MENI
-
         public int Meni()
         {
             Console.WriteLine("~  MENI  ~");
@@ -58,11 +57,9 @@ namespace Client
 
             return i;
         }
-
         #endregion
 
         #region OPCIJE
-
         // Opcija 1 - sva merenja za odabrani ID
         public void Opcija1(IProksi kanal)
         {
@@ -231,7 +228,6 @@ namespace Client
         {   
             //Console.WriteLine("Gašenje klijenta...");
         }
-
         #endregion
     }
 }

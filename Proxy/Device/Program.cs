@@ -35,12 +35,7 @@ namespace Device
             // Instanciranje uređaja i pokretanje njegovog rada
             Uredjaj u = new Uredjaj();
             Console.WriteLine($"ID uređaja je {u.IdUredjaja}");
-
             u.RadUredjaja(kanal);
-
-            // TODO [optional feat] Gašenje uređaja
-            //Console.WriteLine("Uređaj je završio sa radom. Pritisni bilo koji taster za izlaz.");
-            //Console.ReadKey();
         }
     }
 }
