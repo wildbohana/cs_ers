@@ -29,6 +29,9 @@ namespace Device
             while (true)
             {
                 Merenje m = Izmeri();
+                Console.WriteLine("\nPodaci o novom merenju:");
+                Console.WriteLine("\t" + m.ToString());
+
                 PosaljiMerenja(kanal, m);
                 Thread.Sleep(CitanjeVremenaIzKonfiguracijeMerenje());
             }

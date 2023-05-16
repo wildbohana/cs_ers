@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MerenjeProksi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Proksi.cs" />
     <Compile Include="ProksiServis.cs" />

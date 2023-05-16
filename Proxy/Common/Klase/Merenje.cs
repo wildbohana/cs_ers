@@ -62,7 +62,7 @@ namespace Common.Klase
             this.vrstaMerenja = vrstaMerenja == 0 ? VrstaMerenja.ANALOGNO_MERENJE : VrstaMerenja.DIGITALNO_MERENJE;
             this.vrednost = int.Parse(vrednost.ToString());
         }
-
+        
         // Ispis
         public override string ToString()
         {
