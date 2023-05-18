@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6FD167C4-DF66-45CE-BA93-42EF77023CE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{334FE0DE-3AF3-4474-85EB-FE54A18D70A2}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTest", "Tests\ClientTest\ClientTest.csproj", "{770F9E9E-D6C6-4423-932D-91A5C13CABAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceTest", "Tests\DeviceTest\DeviceTest.csproj", "{438DECE4-AE17-41F4-9B66-FF5338075D31}"
@@ -18,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyTest", "Tests\ProxyTest\ProxyTest.csproj", "{486B5249-781C-4200-82DB-11F57106173D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTest", "Tests\CommonTest\CommonTest.csproj", "{2443D8FF-5FC6-4AD8-8455-11F79B4861F2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{334FE0DE-3AF3-4474-85EB-FE54A18D70A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTest", "Tests\ServiceTest\ServiceTest.csproj", "{CD8EA573-63E1-4D27-AEAE-8224FCB0C0EF}"
 EndProject

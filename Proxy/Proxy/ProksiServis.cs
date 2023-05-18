@@ -147,28 +147,32 @@ namespace Proxy
         {
             int cnt = 0;
 
-            // Izvlačenje ID merenja svih onih koja se nalaze u lokalnoj kopiji
-            List<int> lista = new List<int>();
-            foreach (MerenjeProksi mp in lokalnaKopija.Values)
-                if (!lista.Contains(mp.Merenje.IdMerenja))
-                    lista.Add(mp.Merenje.IdMerenja);
-
-            if (lokalnaKopija.Count > 0)
+            lock (lokalnaKopija)
             {
-                foreach (int i in lista)
-                {
-                    if (DateTime.Now - lokalnaKopija[i].PoslednjiPristup > CitanjeVremenaIzKonfiguracijeBrisanje())
-                    {
-                        try
-                        {
-                            lokalnaKopija.Remove(i);
-                        }
-                        catch (Exception e)
-                        {
-                            p.Loger.LogProksi(DateTime.Now, e.Message);
-                        }
+                // Izvlačenje ID merenja svih onih koja se nalaze u lokalnoj kopiji
+                List<int> lista = new List<int>();
+                if (lokalnaKopija.Values.Count > 0)
+                    foreach (MerenjeProksi mp in lokalnaKopija.Values)
+                        if (!lista.Contains(mp.Merenje.IdMerenja))
+                            lista.Add(mp.Merenje.IdMerenja);
 
-                        cnt++;
+                if (lokalnaKopija.Count > 0)
+                {
+                    foreach (int i in lista)
+                    {
+                        if (DateTime.Now - lokalnaKopija[i].PoslednjiPristup > CitanjeVremenaIzKonfiguracijeBrisanje())
+                        {
+                            try
+                            {
+                                lokalnaKopija.Remove(i);
+                            }
+                            catch (Exception e)
+                            {
+                                p.Loger.LogProksi(DateTime.Now, e.Message);
+                            }
+
+                            cnt++;
+                        }
                     }
                 }
             }
