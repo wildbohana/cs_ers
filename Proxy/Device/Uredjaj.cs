@@ -4,6 +4,7 @@ using Common.Klase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,7 +15,18 @@ namespace Device
     public class Uredjaj : IUredjaj
     {
         private int idUredjaja;
-        public int IdUredjaja { get => idUredjaja; set => idUredjaja = value; }
+        public int IdUredjaja 
+        {
+            get
+            {
+                return idUredjaja;
+            }
+            set
+            {
+                if (value > 0) idUredjaja = value;
+                else throw new ArgumentOutOfRangeException("ID uredjaja mora biti pozitivan broj!");
+            }
+        }
 
         public Uredjaj()
         {
@@ -24,20 +36,40 @@ namespace Device
         }
 
         // Izmeri i pošalji podatak na svakih 5 minuta
+        [ExcludeFromCodeCoverage]
         public void RadUredjaja(IServer kanal)
         {
+            Merenje m = null;
             while (true)
             {
-                Merenje m = Izmeri();
-                Console.WriteLine("\nPodaci o novom merenju:");
-                Console.WriteLine("\t" + m.ToString());
+                try
+                {
+                    m = Izmeri();
+                }
+                catch (ArgumentException ae)
+                {
+                    Console.WriteLine(ae.Message);
+                }
 
-                PosaljiMerenja(kanal, m);
+                Console.WriteLine("\nPodaci o novom merenju:");
+                if (m != null)
+                    Console.WriteLine("\t" + m.ToString());
+                
+                try
+                {
+                    PosaljiMerenja(kanal, m);
+                }
+                catch (ArgumentNullException ae)
+                {
+                    Console.WriteLine(ae.Message);
+                }
+
                 Thread.Sleep(CitanjeVremenaIzKonfiguracijeMerenje());
             }
         }
 
         #region METODE
+        [ExcludeFromCodeCoverage]
         private static TimeSpan CitanjeVremenaIzKonfiguracijeMerenje()
         {
             int sati = int.Parse(ConfigurationManager.AppSettings["slanjeSati"]);
@@ -67,11 +99,24 @@ namespace Device
             else
                 vrednost = (rand.NextDouble() > 0.5) ? 1 : 0;
 
-            return new Merenje(id, vrsta, vrednost, vreme, idUredjaja);
+            Merenje m = null;
+            try
+            {
+                m = new Merenje(id, vrsta, vrednost, vreme, idUredjaja);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+
+            return m;
         }
 
         public void PosaljiMerenja(IServer kanal, Merenje m)
         {
+            if (m == null)
+                throw new ArgumentNullException();
+
             try
             {
                 if (kanal.Upis(m))

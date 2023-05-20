@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,14 @@ namespace Common.Klase
         }
 
         #region UREĐAJ
-        public void LogUredjaj(Merenje m, long id)
+        public void LogUredjaj(Merenje m)
         {
-            string s = $"UREDJAJ: {id}, MERENJE {m}";
+            if (m == null)
+            {
+                throw new ArgumentException("Za upis loga je neophodno uneti Merenje.");
+            }
+
+            string s = $"UREDJAJ: {m.IdUredjaja}, MERENJE {m}";
             s += "\n";
             UpisUFajl(s);
         }
@@ -34,6 +40,11 @@ namespace Common.Klase
         #region PROKSI
         public void LogProksi(DateTime dt, string dogadjaj)
         {
+            if (dt == null || dogadjaj == null)
+            {
+                throw new ArgumentException("Za upis loga je neophodno uneti Datum i Dogadjaj.");
+            }
+
             string s = $"{dt}\t{dogadjaj}\n";
             UpisUFajl(s);
         }
@@ -42,18 +53,25 @@ namespace Common.Klase
         #region SERVER
         public void LogServer(DateTime dt, string dogadjaj)
         {
+            if (dt == null || dogadjaj == null)
+            {
+                throw new ArgumentException("Za upis loga je neophodno uneti Datum i Dogadjaj.");
+            }
+
             string s = $"{dt}\t{dogadjaj}\n";
             UpisUFajl(s);
         }
         #endregion
 
         #region OSTALO
+        [ExcludeFromCodeCoverage]
         public void OcistiLog(string fajl)
         {
             if (File.Exists(fajl))
                 File.Delete(fajl);
         }
 
+        [ExcludeFromCodeCoverage]
         public void UpisUFajl(string tekst)
         {
             using (StreamWriter sw = File.AppendText(imeFajla))
@@ -62,8 +80,10 @@ namespace Common.Klase
             }
         }
 
-        public void UpisPriGasenju(DateTime dt)
+        [ExcludeFromCodeCoverage]
+        public void UpisPriGasenju()
         {
+            DateTime dt = DateTime.Now;
             string s = dt.ToString() + "\tGašenje aplikacije...\n";
             s += "..............................................................\n";
             UpisUFajl(s);

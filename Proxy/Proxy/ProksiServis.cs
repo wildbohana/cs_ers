@@ -3,9 +3,11 @@ using Common.Klase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,18 +15,62 @@ namespace Proxy
 {
     public class ProksiServis : IProksi
     {
-        public static IServer kanal = null;
-        static readonly Proksi p = new Proksi();
+        private IServer kanal;
+        public IServer Kanal { get => kanal; set => kanal = value; }
 
-        // idMerenja, (Merenje, VremePoslednjeIzmene)
-        static Dictionary<int, MerenjeProksi> lokalnaKopija = new Dictionary<int, MerenjeProksi>();
+        #region SPAJANJE SA SERVEROM
+        private IServer KonekcijaServer()
+        {
+            try
+            {
+                string adresa = "net.tcp://localhost:8001/Server";
+                ChannelFactory<IServer> cf = new ChannelFactory<IServer>(new NetTcpBinding(), new EndpointAddress(adresa));
+                IServer kanal = cf.CreateChannel();
+
+                Console.WriteLine("Uspešno spajanje Proksija na Server sa bazom podataka.");
+                return kanal;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return null;
+        }
+        #endregion
+
+        // Polja
+        private Log loger;
 
         private DateTime poslednjeAzuriranjeAnalogno = DateTime.MinValue;
         private DateTime poslednjeAzuriranjeDigitalno = DateTime.MinValue;
 
+        private Dictionary<int, MerenjeProksi> lokalnaKopija;       // int - idMerenja
+        private Merenje bazaPoslednji;
+        private MerenjeProksi lokalnoPoslednji;
+
+        public Dictionary<int, MerenjeProksi> LokalnaKopija { get => lokalnaKopija; set => lokalnaKopija = value; }
+        public Merenje BazaPoslednji { get => bazaPoslednji; set => bazaPoslednji = value; }
+        public MerenjeProksi LokalnoPoslednji { get => lokalnoPoslednji; set => lokalnoPoslednji = value; }
+
+        public ProksiServis()
+        {
+            loger = new Log("../../../Logovi/proxyLog.txt");
+            lokalnaKopija = new Dictionary<int, MerenjeProksi>();
+            kanal = KonekcijaServer();
+            
+            Task.Factory.StartNew(() => ProveraStarihVremena());
+        }
+
+        ~ProksiServis()
+        {
+            loger.UpisPriGasenju();
+        }
+
         #region BAZA POSLEDNJI
         // Metoda za proveru poslednjeg ažuriranja podataka u bazi
         // Vreme poslednjeg dodavanja == vreme poslednjeg ažuriranja (jer se merenja ne mogu modifikovati)
+        [ExcludeFromCodeCoverage]
         private Merenje PoslednjeDodavanjeUBazu()
         {
             string query = "select * from Podaci where vreme=(select max(vreme) from Podaci)";
@@ -36,6 +82,7 @@ namespace Proxy
                 return null;      // Baza podataka je skroz prazna u ovom slučaju
         }
 
+        [ExcludeFromCodeCoverage]
         private Merenje PoslednjeDodavanjeUBazuZaTrazeniId(int id)
         {
             // select * from Podaci where vreme=(select max(vreme) from (select * from Podaci where idUredjaja=29021823))
@@ -45,9 +92,10 @@ namespace Proxy
             if (rezultat.Count > 0)
                 return rezultat[0];
             else
-                return null;      // Baza podataka je skroz prazna u ovom slučaju
+                return null;      // Baza podataka nema te podatke u ovom slučaju
         }
 
+        [ExcludeFromCodeCoverage]
         private Merenje PoslednjeDodavanjeUBazuZaTrazenuVrstu(VrstaMerenja vr)
         {
             // 0 za analogne, 1 za digitalne
@@ -60,7 +108,7 @@ namespace Proxy
             if (rezultat.Count > 0)
                 return rezultat[0];
             else
-                return null;      // Baza podataka je skroz prazna u ovom slučaju
+                return null;      // Baza podataka nema te podatke u ovom slučaju
         }
         #endregion
 
@@ -133,53 +181,51 @@ namespace Proxy
         #endregion
 
         #region BRISANJE STARIH MERENJA
-        public static void ProveraStarihVremena()
+        [ExcludeFromCodeCoverage]
+        private void ProveraStarihVremena()
         {
             while (true)
             {
                 Task.Delay(CitanjeVremenaIzKonfiguracijeProvera()).Wait();
-                p.Loger.LogProksi(DateTime.Now, "Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.");
+                loger.LogProksi(DateTime.Now, "Provera da li postoje merenja kojima nije pristupano duže vreme u lokalnoj kopiji.");
                 ObrisiStaraMerenja();
             }
         }
         
-        private static void ObrisiStaraMerenja()
+        private void ObrisiStaraMerenja()
         {
             int cnt = 0;
 
-            lock (lokalnaKopija)
+            // Izvlačenje ID merenja svih onih koja se nalaze u lokalnoj kopiji
+            List<int> lista = new List<int>();
+            foreach (MerenjeProksi mp in lokalnaKopija.Values)
+                if (!lista.Contains(mp.Merenje.IdMerenja))
+                    lista.Add(mp.Merenje.IdMerenja);
+
+            if (lokalnaKopija.Count > 0)
             {
-                // Izvlačenje ID merenja svih onih koja se nalaze u lokalnoj kopiji
-                List<int> lista = new List<int>();
-                if (lokalnaKopija.Values.Count > 0)
-                    foreach (MerenjeProksi mp in lokalnaKopija.Values)
-                        if (!lista.Contains(mp.Merenje.IdMerenja))
-                            lista.Add(mp.Merenje.IdMerenja);
-
-                if (lokalnaKopija.Count > 0)
+                foreach (int i in lista)
                 {
-                    foreach (int i in lista)
+                    if (DateTime.Now - lokalnaKopija[i].PoslednjiPristup > CitanjeVremenaIzKonfiguracijeBrisanje())
                     {
-                        if (DateTime.Now - lokalnaKopija[i].PoslednjiPristup > CitanjeVremenaIzKonfiguracijeBrisanje())
+                        try
                         {
-                            try
-                            {
-                                lokalnaKopija.Remove(i);
-                            }
-                            catch (Exception e)
-                            {
-                                p.Loger.LogProksi(DateTime.Now, e.Message);
-                            }
-
-                            cnt++;
+                            lokalnaKopija.Remove(i);
                         }
+                        catch (Exception e)
+                        {
+                            loger.LogProksi(DateTime.Now, e.Message);
+                        }
+
+                        cnt++;
                     }
                 }
             }
-            p.Loger.LogProksi(DateTime.Now, $"Iz lokalne kopije je obrisano {cnt} zastarelih merenja.");
+            loger.LogProksi(DateTime.Now, $"Iz lokalne kopije je obrisano {cnt} zastarelih merenja.");
         }
 
-        private static TimeSpan CitanjeVremenaIzKonfiguracijeProvera()
+        [ExcludeFromCodeCoverage]
+        private TimeSpan CitanjeVremenaIzKonfiguracijeProvera()
         {
             int sati = int.Parse(ConfigurationManager.AppSettings["proveraSati"]);
             int minute = int.Parse(ConfigurationManager.AppSettings["proveraMinute"]);
@@ -189,7 +235,8 @@ namespace Proxy
             return vreme;
         }
 
-        private static TimeSpan CitanjeVremenaIzKonfiguracijeBrisanje()
+        [ExcludeFromCodeCoverage]
+        private TimeSpan CitanjeVremenaIzKonfiguracijeBrisanje()
         {
             int sati = int.Parse(ConfigurationManager.AppSettings["brisanjeSati"]);
             int minute = int.Parse(ConfigurationManager.AppSettings["brisanjeMinute"]);
@@ -206,45 +253,42 @@ namespace Proxy
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
-            MerenjeProksi lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazeniId(id);
-            if (lokalnoPoslednji != null)
+            lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazeniId(id);
+            bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazeniId(id);
+
+            if (bazaPoslednji == null)
             {
-                Merenje bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazeniId(id);
-                
-                // Ako baza nije prazna
-                if (bazaPoslednji != null)
-                {
-                    if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
-                        azurno = false;
-                    else
-                        azurno = true;
-                }
+                return null;
+            }
+
+            if (lokalnaKopija != null)
+            {
+                if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
+                    azurno = false;
                 else
-                {
-                    return null;    // Ako je baza prazna, nema poente da vršimo bilo kakvu pretragu
-                }
+                    azurno = true;
             }
 
             if (azurno)
             {
                 // Dobavi merenja lokalno
-                p.Loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - svi podaci za traženi ID uređaja [{id}].");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+                loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - svi podaci za traženi ID uređaja [{id}].");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 foreach (MerenjeProksi mp in lokalnaKopija.Values)
                     if (mp.Merenje.IdUredjaja == id)
                         rezultat.Add(mp.Merenje);
 
                 // Ažuriranje vremena poslednjeg pristupa tim podacima
-                if (rezultat != null)
+                if (rezultat.Count > 0)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja].PoslednjiPristup = DateTime.Now;
             }
             else
             {
                 // Dobavi merenja iz baze
-                p.Loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - svi podaci za traženi ID uređaja [{id}].");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
+                loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - svi podaci za traženi ID uređaja [{id}].");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
                 string query = "select * from Podaci where idUredjaja=" + id.ToString();
                 try
@@ -257,7 +301,7 @@ namespace Proxy
                 }
 
                 // Smeštanje podataka u lokalnu kopiju, ažuriranje vremena poslednjeg pristupa tim podacima
-                if (rezultat != null)
+                if (rezultat.Count > 0)
                     foreach (Merenje m in rezultat)
                         lokalnaKopija[m.IdMerenja] = new MerenjeProksi { Merenje = m, PoslednjeAzuriranje = DateTime.Now, PoslednjiPristup = DateTime.Now };
             }
@@ -265,71 +309,65 @@ namespace Proxy
             return rezultat;
         }
 
-        public Merenje DobaviPoslednjiPodatakId(int id)
+        public List<Merenje> DobaviPoslednjiPodatakId(int id)
         {
-            Merenje rezultat = null;
+            List<Merenje> rezultat = new List<Merenje>();
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
-            MerenjeProksi lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazeniId(id);
+            lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazeniId(id);
+            bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazeniId(id);
+
+            if (bazaPoslednji == null)
+            {
+                return null;
+            }
+
             if (lokalnoPoslednji != null)
             {
-                Merenje bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazeniId(id);
-
-                // Ako baza nije prazna
-                if (bazaPoslednji != null)
-                {
-                    if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
-                        azurno = false;
-                    else
-                        azurno = true;
-                }
+                if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
+                    azurno = false;
                 else
-                {
-                    return null;    // Ako je baza prazna, nema poente da vršimo bilo kakvu pretragu
-                }
+                    azurno = true;   
             }
 
             if (azurno)
             {
                 // Dobavi merenja lokalno
-                p.Loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - poslednji podatak za traženi ID uređaja [{id}].");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+                loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - poslednji podatak za traženi ID uređaja [{id}].");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 DateTime poslednjeVreme = DateTime.MinValue;
+                Merenje poslednje = null;
 
                 foreach (MerenjeProksi mp in lokalnaKopija.Values)
                 {
                     if (mp.Merenje.IdUredjaja == id && mp.Merenje.VremeMerenja > poslednjeVreme)
                     {
-                        rezultat = mp.Merenje;
+                        poslednje = mp.Merenje;
                         poslednjeVreme = mp.Merenje.VremeMerenja;
                     }
                 }
 
                 // Ažuriraj poslednje vreme pristupa lokalnoj kopiji
-                if (rezultat != null) lokalnaKopija[rezultat.IdMerenja].PoslednjiPristup = DateTime.Now;
+                if (poslednje != null) 
+                    lokalnaKopija[poslednje.IdMerenja].PoslednjiPristup = DateTime.Now;
             }
             else
             {
                 // Dobavi merenja iz baze
-                p.Loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - poslednji podatak za traženi ID uređaja [{id}].");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
+                loger.LogProksi(DateTime.Now, $"Kriterijum pretrage - poslednji podatak za traženi ID uređaja [{id}].");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera");
 
-                List<Merenje> rezultatOdServera = new List<Merenje>();
                 string query = "select * from Podaci where vreme=(select max(vreme) from Podaci where idUredjaja=" + id + ")";
                 try
                 {
-                    rezultatOdServera = kanal.Citanje($"Poslednji uneti podatak za traženi ID uređaja [{id}].", query);
+                    rezultat = kanal.Citanje($"Poslednji uneti podatak za traženi ID uređaja [{id}].", query);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
-                
-                // Vraćamo rezultat pretrage 
-                if (rezultatOdServera != null)
-                    rezultat = rezultatOdServera[0];
             }
 
             return rezultat;
@@ -341,30 +379,27 @@ namespace Proxy
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
-            MerenjeProksi lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaSve();
+            lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaSve();
+            bazaPoslednji = PoslednjeDodavanjeUBazu();
+
+            if (bazaPoslednji == null)
+            {
+                return null;
+            }
+
             if (lokalnoPoslednji != null)
             {
-                Merenje bazaPoslednji = PoslednjeDodavanjeUBazu();
-
-                // Ako baza nije prazna
-                if (bazaPoslednji != null)
-                {   
-                    if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
-                        azurno = false;
-                    else
-                        azurno = true;                    
-                }
+                if (bazaPoslednji.VremeMerenja > lokalnoPoslednji.Merenje.VremeMerenja)
+                    azurno = false;
                 else
-                {
-                    return null;    // Ako je baza prazna, nema poente da vršimo bilo kakvu pretragu
-                }
+                    azurno = true;
             }
 
             if (azurno)
             {
                 // Dobavi merenja lokalno
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - poslednji uneti podatak za sve uređaje.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - poslednji uneti podatak za sve uređaje.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 // Izdvajanje indeksa iz kolekcije
                 List<int> indeksi = new List<int>();
@@ -400,8 +435,8 @@ namespace Proxy
             else
             {
                 // Dobavi merenja iz baze
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - poslednji uneti podatak za sve uređaje.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - poslednji uneti podatak za sve uređaje.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
 
                 string query = "select * from (select * from Podaci order by vreme desc) group by idUredjaja";
                 try
@@ -423,29 +458,26 @@ namespace Proxy
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
-            MerenjeProksi lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazenuVrstu(VrstaMerenja.ANALOGNO_MERENJE);
+            lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazenuVrstu(VrstaMerenja.ANALOGNO_MERENJE);
+            bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazenuVrstu(VrstaMerenja.ANALOGNO_MERENJE);
+
+            if (bazaPoslednji == null)
+            {
+                return null;
+            }
+
             if (lokalnoPoslednji != null)
             {
-                Merenje bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazenuVrstu(VrstaMerenja.ANALOGNO_MERENJE);
-
-                // Ako baza nije prazna
-                if (bazaPoslednji != null)
-                {
-                    if (bazaPoslednji.VremeMerenja > poslednjeAzuriranjeAnalogno)
-                        azurno = false;
-                    else
-                        azurno = true;
-                }
+                if (bazaPoslednji.VremeMerenja > poslednjeAzuriranjeAnalogno)
+                    azurno = false;
                 else
-                {
-                    return null;    // Ako je baza prazna, nema poente da vršimo bilo kakvu pretragu
-                }
+                    azurno = true;
             }
 
             if (azurno)
             {
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva analogna merenja.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva analogna merenja.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 foreach (MerenjeProksi mp in lokalnaKopija.Values)
                     if (mp.Merenje.VrstaMerenja == VrstaMerenja.ANALOGNO_MERENJE)    
@@ -458,8 +490,8 @@ namespace Proxy
             else
             {
                 // Dobavi merenja iz baze
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva analogna merenja.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva analogna merenja.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
 
                 string query = "select * from Podaci where vrstaMerenja=0";
                 try
@@ -492,30 +524,27 @@ namespace Proxy
             bool azurno = false;
 
             // Provera ažurnosti podataka u lokalnoj kopiji
-            MerenjeProksi lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazenuVrstu(VrstaMerenja.DIGITALNO_MERENJE);
+            lokalnoPoslednji = PoslednjeDodavanjeLokalnoZaTrazenuVrstu(VrstaMerenja.DIGITALNO_MERENJE);
+            bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazenuVrstu(VrstaMerenja.DIGITALNO_MERENJE);
+
+            if (bazaPoslednji == null)
+            {
+                return null;
+            }
+
             if (lokalnoPoslednji != null)
             {
-                Merenje bazaPoslednji = PoslednjeDodavanjeUBazuZaTrazenuVrstu(VrstaMerenja.DIGITALNO_MERENJE);
-
-                // Ako baza nije prazna
-                if (bazaPoslednji != null)
-                {
-                    if (bazaPoslednji.VremeMerenja > poslednjeAzuriranjeDigitalno)
-                        azurno = false;
-                    else
-                        azurno = true;
-                }
+                if (bazaPoslednji.VremeMerenja > poslednjeAzuriranjeDigitalno)
+                    azurno = false;
                 else
-                {
-                    return null;    // Ako je baza prazna, nema poente da vršimo bilo kakvu pretragu
-                }
+                    azurno = true;
             }
 
             if (azurno)
             {
                 // Dobavi merenja lokalno
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva digitalna merenja.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva digitalna merenja.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka iz lokalne kopije.");
 
                 foreach (MerenjeProksi mp in lokalnaKopija.Values)
                     if (mp.Merenje.VrstaMerenja == VrstaMerenja.DIGITALNO_MERENJE)
@@ -529,8 +558,8 @@ namespace Proxy
             {
                 // Dobavi merenja iz baze
 
-                p.Loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva digitalna merenja.");
-                p.Loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
+                loger.LogProksi(DateTime.Now, "Kriterijum pretrage - sva digitalna merenja.");
+                loger.LogProksi(DateTime.Now, "Dobavljanje podataka sa servera.");
 
                 string query = "select * from Podaci where vrstaMerenja=1";
                 try

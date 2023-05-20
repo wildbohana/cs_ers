@@ -1,0 +1,13 @@
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\x86\sqlite3.dll
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\x64\sqlite3.dll
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\Client.exe.config
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\Client.exe
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\Client.pdb
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\Common.dll
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\bin\Debug\Common.pdb
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.exe
+C:\Users\wildb\Documents\GitHub\cs_ers\Proxy\Client\obj\Debug\Client.pdb

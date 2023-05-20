@@ -3,6 +3,7 @@ using Common.Interfejsi;
 using Common.Klase;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Runtime.Remoting.Messaging;
@@ -14,24 +15,43 @@ namespace Client
 {
     public class Klijent : IKlijent
     {
+        private List<Merenje> merenja;
+
+        [ExcludeFromCodeCoverage]
         public void RadKlijenta(IProksi kanal)
         {
             while (true)
             {
                 switch (Meni())
                 {
-                    case 1: Opcija1(kanal); break; 
-                    case 2: Opcija2(kanal); break; 
-                    case 3: Opcija3(kanal); break; 
-                    case 4: Opcija4(kanal); break; 
-                    case 5: Opcija5(kanal); break;
-                    case 0: Kraj(); return;
-                    default: Console.WriteLine("Nepostojeća komanda..."); break;
+                    case 1: 
+                        try { Opcija1(kanal, UnosId()); }
+                        catch (FormatException fe) { Console.WriteLine(fe.Message); }
+                        break; 
+                    case 2:
+                        try { Opcija2(kanal, UnosId()); }
+                        catch (FormatException fe) { Console.WriteLine(fe.Message); }
+                        break;
+                    case 3: 
+                        Opcija3(kanal); 
+                        break; 
+                    case 4: 
+                        Opcija4(kanal); 
+                        break; 
+                    case 5: 
+                        Opcija5(kanal); 
+                        break;
+                    case 0: 
+                        return;
+                    default: 
+                        Console.WriteLine("Nepostojeća komanda..."); 
+                        break;
                 }
             }
         }
 
         #region MENI
+        [ExcludeFromCodeCoverage]
         public int Meni()
         {
             Console.WriteLine("~  MENI  ~");
@@ -49,9 +69,9 @@ namespace Client
             {
                 i = int.Parse(Console.ReadLine());
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e.Message);
+                //Console.WriteLine(e.Message);
                 i = -1;
             }
 
@@ -59,23 +79,44 @@ namespace Client
         }
         #endregion
 
-        #region OPCIJE
-        // Opcija 1 - sva merenja za odabrani ID
-        public void Opcija1(IProksi kanal)
+        #region IO
+        [ExcludeFromCodeCoverage]
+        public int UnosId()
         {
-            int trazeni;
-            List<Merenje> merenja = new List<Merenje>();
+            int id;
+            Console.Write("Unesite ID uređaja: > ");
 
             try
             {
-                Console.Write("Unesite ID uređaja: > ");
-                trazeni = int.Parse(Console.ReadLine());
+                id = int.Parse(Console.ReadLine());
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e.Message);
-                return;
+                //Console.WriteLine(e.Message);
+                return -1;
             }
+
+            return id;
+        }
+
+        [ExcludeFromCodeCoverage]
+        private void IspisRazultata(List<Merenje> merenja)
+        {
+            if (merenja != null && merenja.Count > 0)
+                foreach (Merenje m in merenja)
+                    Console.WriteLine("\t" + m.ToString());
+            else
+                Console.WriteLine("\tNema traženih merenja.");
+            Console.WriteLine();
+        }
+        #endregion
+
+        #region OPCIJE
+        // Opcija 1 - sva merenja za odabrani ID
+        public void Opcija1(IProksi kanal, int trazeni)
+        {
+            if (trazeni < 0)
+                throw new FormatException("Neispravno unet ID!");
 
             try
             {
@@ -92,39 +133,23 @@ namespace Client
             }
 
             Console.WriteLine($"Merenja za uređaj sa ID {trazeni}:");
-            if (merenja != null)
-                foreach (Merenje m in merenja)
-                    Console.WriteLine("\t" + m.ToString());
-            else
-                Console.WriteLine("\tNema merenja za ovaj uređaj.");
-            Console.WriteLine();
+            IspisRazultata(merenja);
         }
 
-        // Opcija 2 - poslenje ažurirano merenje za odabrani ID 
-        public void Opcija2(IProksi kanal)
+        // Opcija 2 - poslednje ažurirano merenje za odabrani ID 
+        public void Opcija2(IProksi kanal, int trazeni)
         {
-            int trazeni;
-            Merenje poslednje;
+            if (trazeni < 0)
+                throw new FormatException("Neispravno unet ID!");
 
             try
             {
-                Console.Write("Unesite ID uređaja: > ");
-                trazeni = int.Parse(Console.ReadLine());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return;
-            }
-
-            try
-            {
-                poslednje = kanal.DobaviPoslednjiPodatakId(trazeni);
+                merenja = kanal.DobaviPoslednjiPodatakId(trazeni);
             }
             catch (NullReferenceException e)
             {
                 Console.WriteLine(e.Message);
-                poslednje = null;
+                merenja = null;
             }
             catch (Exception ex)
             {
@@ -133,11 +158,7 @@ namespace Client
             }
 
             Console.WriteLine($"Poslednje merenja za uređaj sa ID {trazeni}:");
-            if (poslednje != null)
-                Console.WriteLine("\t" + poslednje.ToString());
-            else
-                Console.WriteLine("\tNije pronađeno traženo merenje.");
-            Console.WriteLine();
+            IspisRazultata(merenja);
         }
 
         // Opcija 3 - poslednje ažurirano merenje za sve uređaje
@@ -160,12 +181,7 @@ namespace Client
             }
 
             Console.WriteLine("Merenja za sve uređaje:");
-            if (merenja != null)
-                foreach (Merenje m in merenja)
-                    Console.WriteLine("\t" + m.ToString());
-            else
-                Console.WriteLine("Nisu pronađena tražena merenja.");
-            Console.WriteLine();
+            IspisRazultata(merenja);
         }
 
         // Opcija 4 - sva analogna merenja
@@ -188,12 +204,7 @@ namespace Client
             }
 
             Console.WriteLine("Analogna merenja za sve uređaje:");
-            if (merenja != null)
-                foreach (Merenje m in merenja)
-                    Console.WriteLine(m.ToString());
-            else
-                Console.WriteLine("Nisu pronađena tražena merenja.");
-            Console.WriteLine();
+            IspisRazultata(merenja);
         }
 
         // Opcija 5 - sva digitalna merenja
@@ -215,18 +226,8 @@ namespace Client
                 return;
             }
 
-            Console.WriteLine("Analogna merenja za sve uređaje:");
-            if (merenja != null)
-                foreach (Merenje m in merenja)
-                    Console.WriteLine(m.ToString());
-            else
-                Console.WriteLine("Nisu pronađena tražena merenja.");
-            Console.WriteLine();
-        }
-
-        public void Kraj()
-        {   
-            //Console.WriteLine("Gašenje klijenta...");
+            Console.WriteLine("Digitalna merenja za sve uređaje:");
+            IspisRazultata(merenja);
         }
         #endregion
     }

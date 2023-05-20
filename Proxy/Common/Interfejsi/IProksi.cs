@@ -14,7 +14,7 @@ namespace Common.Interfejsi
         [OperationContract]
         List<Merenje> DobaviPodatkeId(int id);
         [OperationContract]
-        Merenje DobaviPoslednjiPodatakId(int id);
+        List<Merenje> DobaviPoslednjiPodatakId(int id);
         [OperationContract]
         List<Merenje> DobaviPoslednjiPodatakSvi();
         [OperationContract]

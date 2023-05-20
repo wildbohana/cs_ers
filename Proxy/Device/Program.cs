@@ -2,6 +2,7 @@
 using Common.Klase;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Device
 {
     public class Program
     {
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             Console.Title = "PROKSI - Uređaj";
