@@ -45,10 +45,7 @@ namespace CommonTest
         [TestCase(3434, 1, 4545, 6666)]
         public void MerenjeKonstruktor_LosiParametri_ZaVrstuIVrednost(int idMerenja, VrstaMerenja vrsta, int vrednost, int idUredjaja)
         {
-            // throw new ArgumentException("Morate popuniti sva polja sa ispravnim vrednostima!");
-
             DateTime dt = DateTime.Now;            
-
             Assert.Throws<ArgumentOutOfRangeException>(() => { Merenje m = new Merenje(idMerenja, vrsta, vrednost, dt, idUredjaja); });
         }
 
@@ -57,7 +54,6 @@ namespace CommonTest
         public void MerenjeKonstruktor_LosiParametri_ZaDatum(int idMerenja, VrstaMerenja vrsta, int vrednost, int idUredjaja)
         {
             DateTime dt = DateTime.Now + TimeSpan.FromDays(1);
-
             Assert.Throws<ArgumentException>(() => { Merenje m = new Merenje(idMerenja, vrsta, vrednost, dt, idUredjaja); });
         }
 
@@ -67,7 +63,6 @@ namespace CommonTest
         public void MerenjeKonstruktor_LosiParametri(int idMerenja, VrstaMerenja vrsta, int vrednost, int idUredjaja)
         {
             DateTime dt = DateTime.Now;
-
             Assert.Throws<ArgumentException>(() => { Merenje m = new Merenje(idMerenja, vrsta, vrednost, dt, idUredjaja); });
         }
         #endregion

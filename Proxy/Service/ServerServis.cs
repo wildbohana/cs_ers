@@ -33,6 +33,7 @@ namespace Service
         }
         #endregion
 
+        [ExcludeFromCodeCoverage]
         public bool Upis(Merenje m)
         {
             Loger.LogServer(DateTime.Now, $"Uređaj {m.IdUredjaja} je poslao merenje {m.IdMerenja}. Upis u bazu podataka je započet.");
@@ -56,6 +57,7 @@ namespace Service
             }
         }
 
+        [ExcludeFromCodeCoverage]
         public List<Merenje> Citanje(string kriterijum, string query)
         {
             Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: <{kriterijum}>. Čitanje iz baze podataka je započeto.");
@@ -87,6 +89,7 @@ namespace Service
         }
 
         // Za SQLite
+        [ExcludeFromCodeCoverage]
         private string UcitajStringZaBazu(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

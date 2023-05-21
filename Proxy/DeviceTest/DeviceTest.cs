@@ -16,7 +16,6 @@ namespace DeviceTest
     [TestFixture]
     public class DeviceTest
     {
-        // trebaće IServer kao mock
         private Uredjaj uredjaj;
         private Mock<IUredjaj> u;
         private Mock<IServer> kanal;
@@ -29,6 +28,7 @@ namespace DeviceTest
             kanal = new Mock<IServer>();
         }
 
+        #region KONSTRUKTOR
         [Test]
         public void KonstruktorTest()
         {
@@ -52,7 +52,9 @@ namespace DeviceTest
 
             Assert.AreNotEqual(uredjaj1.IdUredjaja, uredjaj2.IdUredjaja);
         }
+        #endregion
 
+        #region PROPERTIJI
         [Test]
         [TestCase(123)]
         [TestCase(2000)]
@@ -69,7 +71,9 @@ namespace DeviceTest
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => uredjaj.IdUredjaja = id);
         }
+        #endregion
 
+        #region METODE
         [Test]
         public void IzmeriTest()
         {
@@ -82,5 +86,6 @@ namespace DeviceTest
         {   
             Assert.Throws<ArgumentException>(() => uredjaj.PosaljiMerenja(kanal.Object, null));
         }
+        #endregion
     }
 }

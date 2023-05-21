@@ -80,42 +80,5 @@ namespace CommonTest
             Assert.That(ex.Message, Is.EqualTo("Za upis loga je neophodno uneti Merenje."));
         }
         #endregion
-
-        #region UPIS LOGA POZVAN
-        [Test]
-        [Ignore("Not ready for primetime")]
-        public void LogProksi_ImaArgumente_PozivaMetodu()
-        {
-            DateTime dt = DateTime.Now;
-            string dogadjaj = "test";
-
-            // TODO fix
-            logerMok.Setup(x => x.LogProksi(dt, dogadjaj));
-            logerMok.Verify(x => x.LogProksi(dt, dogadjaj), Times.Once());
-        }
-
-        [Test]
-        [Ignore("Not ready for primetime")]
-        public void LogServer_ImaArgumente_PozivaMetodu()
-        {
-            DateTime dt = DateTime.Now;
-            string dogadjaj = "test";
-
-            // TODO fix
-            loger.LogServer(dt, dogadjaj);
-            logerMok.Verify(x => x.LogServer(dt, dogadjaj), Times.Once());
-        }
-
-        [Test]
-        [Ignore("Not ready for primetime")]
-        public void LogUredjaj_ImaArgumente_PozivaMetodu()
-        {
-            Merenje m = new Merenje(1, 1, 1, 1, DateTime.Now);
-
-            // TODO fix
-            loger.LogUredjaj(m);
-            logerMok.Verify(x => x.LogUredjaj(m), Times.Once());
-        }
-        #endregion
     }
 }

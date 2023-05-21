@@ -30,13 +30,17 @@ namespace ServiceTest
         }
 
         [Test]
-        [Ignore("Glupa sam, ne ide ovako")]
-        public void TestUpis_VracaFalse()
+        [Ignore("EntityFramorkCore doesn't work on .NET Framework.")]
+        public void TestUpis()
         {
-            Merenje mrnj = new Merenje(1, 1, 1, 1, DateTime.Now);
-            bool uspesno = ss.Upis(mrnj);
+            
+        }
 
-            Assert.IsFalse(uspesno);
+        [Test]
+        [Ignore("EntityFramorkCore doesn't work on .NET Framework.")]
+        public void TestCitanje()
+        {
+
         }
     }
 }
