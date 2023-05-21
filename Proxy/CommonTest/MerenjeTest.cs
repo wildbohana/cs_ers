@@ -14,11 +14,7 @@ namespace CommonTest
     {
         private Mock<Merenje> m;
 
-        public MerenjeTest()
-        {
-            SetUp();
-        }
-
+        [SetUp]
         public void SetUp()
         {
             m = new Mock<Merenje>();
@@ -70,8 +66,6 @@ namespace CommonTest
         [TestCase(1000, 1, 1, -2000)]
         public void MerenjeKonstruktor_LosiParametri(int idMerenja, VrstaMerenja vrsta, int vrednost, int idUredjaja)
         {
-            // throw new ArgumentException("Morate popuniti sva polja sa ispravnim vrednostima!");
-
             DateTime dt = DateTime.Now;
 
             Assert.Throws<ArgumentException>(() => { Merenje m = new Merenje(idMerenja, vrsta, vrednost, dt, idUredjaja); });

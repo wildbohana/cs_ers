@@ -19,9 +19,6 @@ namespace Common.Klase
         private int vrednost;
         private DateTime vremeMerenja;
 
-        // Sa obzirom da nigde nemam opciju za menjanje vremena, onda se vremeMerenja nikada neće ni menjati
-        // Da sam imala opciju izmene već postojećih merenja, ovo bih obavezno ažurirala automatski svaki put
-
         // Propertiji
         [DataMember]
         public int IdUredjaja { get => idUredjaja; set => idUredjaja = value; }

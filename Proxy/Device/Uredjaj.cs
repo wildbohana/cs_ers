@@ -114,8 +114,7 @@ namespace Device
 
         public void PosaljiMerenja(IServer kanal, Merenje m)
         {
-            if (m == null)
-                throw new ArgumentNullException();
+            if (m == null) throw new ArgumentException();
 
             try
             {

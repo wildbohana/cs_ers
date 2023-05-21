@@ -1,19 +1,18 @@
 ﻿using Common.Interfejsi;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-// Proxy Host:  localhost://8002/Proksi
-// Server Host: localhost://8001/Server
-
 namespace Proxy
 {
     public class Program
     {
+        [ExcludeFromCodeCoverage]
         static void Main(string[] args)
         {
             Console.Title = "PROKSI - Proxy";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Interfejsi;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Common.Klase
 {
-    public class Log
+    public class Log : ILog
     {
         private string imeFajla;
         public string ImeFajla { get => imeFajla; set => imeFajla = value; }

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Interfejsi\IKlijent.cs" />
     <Compile Include="Interfejsi\IMerenje.cs" />
+    <Compile Include="Interfejsi\ILog.cs" />
     <Compile Include="Interfejsi\IProksi.cs" />
     <Compile Include="Interfejsi\IServer.cs" />
     <Compile Include="Interfejsi\IUredjaj.cs" />

@@ -15,23 +15,27 @@ namespace Service
 {
     public class ServerServis : IServer
     {
+        #region LOG
         private Log loger;
+
+        public Log Loger { get => loger; set => loger = value; }
 
         [ExcludeFromCodeCoverage]
         public ServerServis()
         {
-            loger = new Log("../../../Logovi/serverLog.txt");
+            Loger = new Log("../../../Logovi/serverLog.txt");
         }
 
         [ExcludeFromCodeCoverage]
         ~ServerServis()
         {
-            loger.UpisPriGasenju();
+            Loger.UpisPriGasenju();
         }
+        #endregion
 
         public bool Upis(Merenje m)
         {
-            loger.LogServer(DateTime.Now, $"Uređaj {m.IdUredjaja} je poslao merenje {m.IdMerenja}. Upis u bazu podataka je započet.");
+            Loger.LogServer(DateTime.Now, $"Uređaj {m.IdUredjaja} je poslao merenje {m.IdMerenja}. Upis u bazu podataka je započet.");
 
             using (IDbConnection veza = new SQLiteConnection(UcitajStringZaBazu()))
             {
@@ -41,12 +45,12 @@ namespace Service
                 // Log o uspešnosi, vraćanje bool vrednosti uređaju
                 if (dodatih > 0)
                 {
-                    loger.LogServer(DateTime.Now, $"Podatak {m.IdMerenja} je uspešno upisan u bazu podataka.");
+                    Loger.LogServer(DateTime.Now, $"Podatak {m.IdMerenja} je uspešno upisan u bazu podataka.");
                     return true;
                 }
                 else
                 {
-                    loger.LogServer(DateTime.Now, $"GREŠKA! Podatak {m.IdMerenja} nije upisan u bazu podataka.");
+                    Loger.LogServer(DateTime.Now, $"GREŠKA! Podatak {m.IdMerenja} nije upisan u bazu podataka.");
                     return false;
                 }
             }
@@ -54,7 +58,7 @@ namespace Service
 
         public List<Merenje> Citanje(string kriterijum, string query)
         {
-            loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: <{kriterijum}>. Čitanje iz baze podataka je započeto.");
+            Loger.LogServer(DateTime.Now, $"Proksi je zatražio podatke po krijerijumu: <{kriterijum}>. Čitanje iz baze podataka je započeto.");
 
             using (IDbConnection veza = new SQLiteConnection(UcitajStringZaBazu()))
             {
@@ -71,12 +75,12 @@ namespace Service
 
                 if (output.Count() > 0)
                 {
-                    loger.LogServer(DateTime.Now, "Podaci su uspešno dobavljeni iz baze podataka.");
+                    Loger.LogServer(DateTime.Now, "Podaci su uspešno dobavljeni iz baze podataka.");
                     return output.ToList();
                 }
                 else
                 {
-                    loger.LogServer(DateTime.Now, "Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.");
+                    Loger.LogServer(DateTime.Now, "Podaci nisu pronađeni u bazi podataka. Možda taj tip podataka još uvek nije upisan u bazu.");
                     return new List<Merenje>();
                 }
             }
